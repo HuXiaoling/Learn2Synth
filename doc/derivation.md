@@ -29,7 +29,7 @@ network is encouraged to generate synthetic images that cause a better update of
 
 ![Figure 1](learn2synth_fig1.svg)
 
-**Step 2: synthetic pass and update segmentation network**
+**Step 2: real pass and update augmentation network**
 
 ![Figure 1](learn2synth_fig2.svg)
 
