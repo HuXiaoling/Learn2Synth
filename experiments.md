@@ -182,6 +182,14 @@ Sigmoid:
 | model4        | 0.0857    | 0.5870    | 0.7590    | 0.9669    | 0.8525    |
 | **model5**    | 0.0840    | 0.5887    | 0.7618    | 0.9680    | 0.8643    |
 
+| Pre-set | sigma = 0.15 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+| model1        | 0.1474    | 0.4012    | 0.4708    | 0.6444    | 0.856 |
+| **model2**    | 0.1460    | 0.3873    | 0.4611    | 0.6498    | 0.858 |
+| model3        | 0.1507    | 0.3674    | 0.4476    | 0.6594    | 0.847 |
+| model4        | 0.1471    | 0.3653    | 0.4470    | 0.6598    | 0.856 |
+| model5        | 0.1451    | 0.3552    | 0.4390    | 0.6612    | 0.854 |
+
 | Pre-set | sigma = [0.025, 0.2] | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | model1        | 0.1337    | 0.4221    | 0.5292    | 0.8012    | 0.8638    |
@@ -190,54 +198,69 @@ Sigmoid:
 | model4        | 0.1339    | 0.3973    | 0.5059    | 0.7986    | 0.8591    |
 | model5        | 0.1325    | 0.3932    | 0.5024    | 0.7968    | 0.8479    |
 
-| Noise-level | sigma = 0.05 | sigma = 0.1 | sigma = [0.025, 0.2] |
-| :----: | :----: | :----: | :----: |
-|   0.05        |    0.8945  |     |     |
-|   0.1         |      |   0.8545  |     |
-|[0.025, 0.2]   |      |     |   0.8611  |
-
+| Noise-level | noise-free (LearnableSynthSeg)  | sigma = 0.05  | sigma = 0.1 | sigma = 0.15    | sigma = [0.025, 0.2] |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+| noise-free    |           |           |           |           |           |
+| 0.05          |           | 0.8945    |           |           |           |
+| 0.1           |           |           | 0.8545    |           |           |
+| 0.15          |           |           |           |           |           |
+| [0.025, 0.2]  |           |           |           |           | 0.8611    |
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | 0.5/0.5/0.5   | train_free_05.sh          | Running   |
-| Learn2Synth   | 0.05          | Fixed | 0.5/0.5/0.5   | train_005_05_bias.sh           | Done      |
-| Learn2Synth   | 0.1           | Fixed | 0.5/0.5/0.5   | train_010_05_bias.sh           | Done      |
-| Learn2Synth   | 0.15          | Fixed | 0.5/0.5/0.5   | train_015_05.sh           | Running   |
+| Learn2Synth   | 0.05          | Fixed | 0.5/0.5/0.5   | train_005_05_bias.sh      | Done      |
+| Learn2Synth   | 0.1           | Fixed | 0.5/0.5/0.5   | train_010_05_bias.sh      | Done      |
+| Learn2Synth   | 0.15          | Fixed | 0.5/0.5/0.5   | train_015_05.sh           | Done      |
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.5/0.5/0.5   | train_vary_05_bias.sh     | Done      |
-| Learn2Synth   | [0.025, 0.2]  | Range | -/-/-         | train_vary_vary.sh        | Running   |
+| Learn2Synth   | [0.025, 0.2]  | Range | -/-/-         | train_vary_vary.sh        | Done      |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.5/0.5/0.5   | train_vary_vary_05_bias.sh| Running   |
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | 0.8/0.8/0.8   | train_free_08.sh          | Running   |
-| Learn2Synth   | 0.05          | Fixed | 0.8/0.8/0.8   |                           | To run    |
-| Learn2Synth   | 0.1           | Fixed | 0.8/0.8/0.8   |                           | To run    |
-| Learn2Synth   | 0.15          | Fixed | 0.8/0.8/0.8   |                           | To run    |
-| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.8/0.8/0.8   |                           | To run    |
-| Learn2Synth   | [0.025, 0.2]  | Range | 0.8/0.8/0.8   | train_vary_vary_08_bias.sh| Running   |
+| Learn2Synth   | 0.05          | Fixed | 0.8/0.8/0.8   | train_005_08.sh           | Running   |
+| Learn2Synth   | 0.1           | Fixed | 0.8/0.8/0.8   | train_010_08.sh           | Running   |
+| Learn2Synth   | 0.15          | Fixed | 0.8/0.8/0.8   | train_015_08.sh           | Done      |
+| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.8/0.8/0.8   | train_vary_08.sh          | Done      |
+| Learn2Synth   | [0.025, 0.2]  | Range | 0.8/0.8/0.8   | train_vary_vary_08_bias.sh| Done      |
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | 0.2/0.2/0.2   | train_free_02.sh          | Running   |
-| Learn2Synth   | 0.05          | Fixed | 0.2/0.2/0.2   |                           | To run    |
-| Learn2Synth   | 0.1           | Fixed | 0.2/0.2/0.2   |                           | To run    |
-| Learn2Synth   | 0.15          | Fixed | 0.2/0.2/0.2   |                           | To run    |
-| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.2/0.2/0.2   |                           | To run    |
+| Learn2Synth   | 0.05          | Fixed | 0.2/0.2/0.2   | train_005_02.sh           | Running   |
+| Learn2Synth   | 0.1           | Fixed | 0.2/0.2/0.2   | train_010_02.sh           | Running   |
+| Learn2Synth   | 0.15          | Fixed | 0.2/0.2/0.2   | train_015_02.sh           | Running   |
+| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.2/0.2/0.2   | train_vary_02.sh          | Running   |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.2/0.2/0.2   | train_vary_vary_02_bias.sh| Running   |
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | 0             | 0.5/0.5/0.5   | train_synthseg_free_05.sh | Running   |
-| SynthSeg  | 0.05          | 0.5/0.5/0.5   | train_synthseg_005_05.sh  | Running   |
-| SynthSeg  | 0.1           | 0.5/0.5/0.5   | train_synthseg_010_05.sh  | Running   |
-| SynthSeg  | 0.15          | 0.5/0.5/0.5   | train_synthseg_015_05.sh  | Running   |
-| SynthSeg  | [0.025, 0.2]  | 0.5/0.5/0.5   | train_synthseg_vary_05.sh | Running   |
+| SynthSeg  | 0.05          | 0.5/0.5/0.5   | train_synthseg_005_05.sh  | Done      |
+| SynthSeg  | 0.1           | 0.5/0.5/0.5   | train_synthseg_010_05.sh  | Done      |
+| SynthSeg  | 0.15          | 0.5/0.5/0.5   | train_synthseg_015_05.sh  | Done      |
+| SynthSeg  | [0.025, 0.2]  | 0.5/0.5/0.5   | train_synthseg_vary_05.sh | Done      |
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | 0.        |                       |  | To run    |
-| SynthSeg  | 0.0503    | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh  | Running   |
-| SynthSeg  | 0.0840    | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh  | Running   |
-| SynthSeg  | 0.        |                       |  | To run    |
-| SynthSeg  | 0.1342    | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh | Runing    |
+| SynthSeg  | 0.        |                       |                                   | To run    |
+| SynthSeg  | 0.0503    | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh  | Done      |
+| SynthSeg  | 0.0840    | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh  | Done      |
+| SynthSeg  | 0.1460    | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh  | Running   |
+| SynthSeg  | 0.1342    | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh | Done      |
+
+Ablation study for learning rate:
+| Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | LR | States |
+| :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05.sh          | 0.0001    | Above     |
+| Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_0002.sh  | 0.0002    | Running   |
+| Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_0005.sh  | 0.0005    | Running   |
+| Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_001.sh   | 0.001     | Running   |
+| Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_002.sh   | 0.002     | Running   |
+| Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_005.sh   | 0.005     | Fail   |
+| Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_01.sh    | 0.01      | Fail   |
+| Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_05.sh    | 0.05      | Fail   |
+
+
 
