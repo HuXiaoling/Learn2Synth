@@ -1,38 +1,5 @@
 Experiemnt1:
 
-Get sigma value: model['state_dict']['network.synthnet.sigma']
-
-Note 'vary' means 'Uniformed sampling from [0.025, 0.2]'.
-
-    training on noisy images and test on noisy images as well
-        0.05 -> 12
-        0.1  -> 5
-        0.15 -> 13
-        vary -> 15
-
-    training on noise-free images, and test on noisy images
-        005_1_1, 11570, 0.6639
-        010_1_1, 11030, 0.6400
-        015_1_1,  6150, 0.5203
-        vary_1_1, 12170, 0.6532
-
-To do: (mean + std for 5 samples)
-
-        train: noise free, test: free, 0.05, 0.1 0.15, vary
-    learn2synth: 
-        sigma = 0.05 test: free, 0.05, 0.1 0.15,vary
-        sigma = 0.1  test: free, 0.1, 0.1 0.15, vary
-        sigma = 0.15  test: free, 0.1, 0.1 0.15, vary
-        sigma = vary test: free, 0.1, 0.1 0.15, vary
-
-        real real data (OASIS)
-
-        interpolation layer (pytorch)
-        Uniformed sampled from same dis. indepdently, upsampling to image size
-        goal: the distribution range of bias field
-        two learnable weight: the min and max
-        [W_min, W_max]
-
 Experimental results on different settings:
 
 (Low bound?) Row is different models, column is different level noise images
@@ -45,6 +12,71 @@ Experimental results on different settings:
 | 0.15          | 0.1423    | 0.0918    | 0.4917    | 0.7994    | 0.8396    | 0.8332    |
 | vary          | 0.2045    | 0.1505    | 0.6353    | 0.8310    | 0.8336    | 0.8386    |
 
+| Setting | Preset Sigma | Opmitized Sigma | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| Learn2Synth   | 0             | Fixed | train_0.sh                    | Done  |
+| Learn2Synth   | 0.05          | Fixed | train_005.sh  (experiment_12) | Done  |
+| Learn2Synth   | 0.1           | Fixed | train_010.sh  (experiment_5)  | Done  |
+| Learn2Synth   | 0.15          | Fixed | train_015.sh  (experiment_13) | Done  |
+| Learn2Synth   | [0.025, 0.2]  | Fixed | train_vary.sh (experiment_15) | Done  |
+| Learn2Synth   | [0.025, 0.2]  | Range | train_vary_vary.sh            | Done  |
+
+| Setting | Preset Sigma | File | States |
+| :----: | :----: | :----: | :----: |
+| SynthSeg  | 0             | train_free_ori.sh     | Done  |
+| SynthSeg  | 0.05          | train_005_free.sh     | Done  |
+| SynthSeg  | 0.1           | train_010_free.sh     | Done  |
+| SynthSeg  | 0.15          | train_015_free.sh     | Done  |
+| SynthSeg  | [0.025, 0.2]  | train_vary_free.sh    | Done  |
+
+| Setting | Preset Sigma | File | States |
+| :----: | :----: | :----: | :----: |
+| SynthSeg  | -0.0023   | train_synthseg_free_learned.sh    | Running   |
+| SynthSeg  | 0.0402    | train_synthseg_005_learned.sh     | Running   |
+| SynthSeg  | 0.0993    | train_synthseg_010_learned.sh     | Running   |
+| SynthSeg  | 0.1466    | train_synthseg_015_learned.sh     | Running   |
+| SynthSeg  | 0.1328    | train_synthseg_vary_learned.sh    | To run    |
+
+| Pre-set | sigma = 0 | Dice |
+| :----: | :----: | :----: |
+| model1        | 0.0004    | 0.889 |
+| model2        | -0.0009   | 0.897 |
+| model3        | -0.0008   | 0.897 |
+| model4        | -0.0014   | 0.897 |
+| **model5**    | -0.0023   | 0.898 |
+
+| Pre-set | sigma = 0.05 | Dice |
+| :----: | :----: | :----: |
+| model1        | 0.0411    | 0.886 |
+| model2        | 0.0413    | 0.877 |
+| **model3**    | 0.0402    | 0.893 |
+| model4        | 0.0435    | 0.877 |
+| model5        | 0.0440    | 0.879 |
+
+| Pre-set | sigma = 0.1 | Dice |
+| :----: | :----: | :----: |
+| model1        | 0.0958    | 0.853 |
+| **model2**    | 0.0993    | 0.868 |
+| model3        | 0.0981    | 0.854 |
+| model4        | 0.0971    | 0.859 |
+| model5        | 0.0977    | 0.852 |
+
+| Pre-set | sigma = 0.15 | Dice |
+| :----: | :----: | :----: |
+| model1        | 0.1446    | 0.840 |
+| model2        | 0.1443    | 0.823 |
+| model3        | 0.1457    | 0.829 |
+| **model4**    | 0.1466    | 0.850 |
+| model5        | 0.1482    | 0.823 |
+
+| Pre-set | sigma = [0.025, 0.2] | Dice |
+| :----: | :----: | :----: |
+| **model1**    | 0.1328    | 0.841 |
+| model2        | 0.1377    | 0.822 |
+| model3        | 0.1320    | 0.826 |
+| model4        | 0.1318    | 0.830 |
+| model5        | 0.1376    | 0.840 |
+
 | Noise-level | noise-free |
 | :----: | :----: |
 | model1    | 0.7212/0.7129 |
@@ -52,7 +84,6 @@ Experimental results on different settings:
 | model3    | 0.7174/0.7220 |
 | model4    | 0.7019/0.7202 |
 | model5    | 0.7301/0.7247 |
-| mean      | 0.7197/0.7217 |
 
 Fine-scale sigma results:
 
@@ -61,9 +92,8 @@ Fine-scale sigma results:
 | model1    | 0.0411    | 0.0829    | 0.0930    | 0.0958    | 0.0997    | 0.1069    | 0.1446    | 0.1328    |
 | model2    | 0.0413    | 0.0816    | 0.0925    | 0.0993    | 0.0990    | 0.1040    | 0.1443    | 0.1377    |
 | model3    | 0.0402    | 0.0849    | 0.0938    | 0.0981    | 0.0975    | 0.1076    | 0.1457    | 0.1320    |
-| model4    | 0.0411    | 0.0858    | 0.0918    | 0.0971    | 0.1010    | 0.1056    | 0.1466    | 0.1318    |
-| model5    | 0.0416    | 0.0851    | 0.0934    | 0.0977    | 0.0993    | 0.1067    | 0.1483    | 0.1376    |
-| mean      | 0.0411    | 0.0841    | 0.0929    | 0.0976    | 0.0993    | 0.1062    | 0.1459    | 0.1344    |
+| model4    | 0.0435    | 0.0858    | 0.0918    | 0.0971    | 0.1010    | 0.1056    | 0.1466    | 0.1318    |
+| model5    | 0.0440    | 0.0851    | 0.0934    | 0.0977    | 0.0993    | 0.1067    | 0.1482    | 0.1376    |
 
 Fine-scale sigma results:
 
@@ -74,7 +104,6 @@ Fine-scale sigma results:
 | model3    | 0.0951/0.8767 | 0.0882/0.8744 | 0.0909/0.8600 | 0.0944/0.8629 | 0.0942/0.8528 | 0.0981/0.8555 |
 | model4    | 0.0945/0.8584 | 0.0899/0.8567 | 0.0913/0.8604 | 0.0948/0.8673 | 0.0941/0.8616 | 0.0971/0.8677 |
 | model5    | 0.0933/0.8590 | 0.0897/0.8697 | 0.0929/0.8620 | 0.0965/0.8705 | 0.0983/0.8741 | 0.0977/0.8630 |
-| mean      | 0.0940/0.8611 | 0.0894/0.8646 | 0.0924/0.8610 | 0.0949/0.8686 | 0.0949/0.8630 | 0.0976/0.8584 |
 
 Experiment2: synthetic real images = noise_free_image * bias filed + noise
 
@@ -114,7 +143,6 @@ Check if sigma below the pre-set value
 | model3    | -0.1036   | 0.0964    |
 | model4    | -0.1046   | 0.0954    |
 | model5    | -0.1043   | 0.0957    |
-| mean      | -0.1043   | 0.0957    |
 
 | Pre-set | sigma = 0.05 | low = 0.5 |
 | :----: | :----: | :----: |
