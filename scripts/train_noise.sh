@@ -16,7 +16,7 @@ python train_noise.py fit \
   --trainer.accelerator gpu \
   --trainer.devices 1 \
   --data.num_workers 4 \
-  --model.classic false \
+  --model.classic true \
   --model.real_sigma_min 0 \
   --model.real_sigma_max 0 \
   --model.alpha $ALPHA \
