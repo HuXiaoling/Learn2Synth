@@ -75,6 +75,7 @@ class Model(pl.LightningModule):
         self.alpha = alpha
         self.real_sigma_min = real_sigma_min
         self.real_sigma_max = real_sigma_max
+        self.classic = classic
 
         segnet = UNet(
             ndim,
@@ -89,7 +90,7 @@ class Model(pl.LightningModule):
         # synth = SharedSynth if synth_shared else DiffSynth
         # synth = cc.batch(synth(SynthFromLabelTransform(order=1)))
         synth = SynthFromLabelTransform(order=1, resolution=False, snr=False, bias=False)
-        synth = cc.batch(DiffSynthFull(synth, real_sigma_min=real_sigma_min, real_sigma_max=real_sigma_max))
+        synth = cc.batch(DiffSynthFull(synth, real_sigma_min=real_sigma_min, real_sigma_max=real_sigma_max, classic=classic))
 
         if loss == 'dice':
             loss = DiceLoss(activation='Softmax')
@@ -294,11 +295,12 @@ class DiffSynthFull(torch.nn.Module):
     The other (the source) does not have noise.
     """
 
-    def __init__(self, synth, real_sigma_min=0.15, real_sigma_max=0.15):
+    def __init__(self, synth, real_sigma_min=0.15, real_sigma_max=0.15, classic=False):
         super().__init__()
         self.synth = synth
         self.real_sigma_min = real_sigma_min
         self.real_sigma_max = real_sigma_max
+        self.classic = classic
 
     def forward(self, slab, _, tlab):
         # slab: labels of the source (synth) domain
@@ -308,6 +310,11 @@ class DiffSynthFull(torch.nn.Module):
    
         simg, slab = self.synth(slab)
         timg, tlab = self.synth(tlab)
+        import pdb; pdb.set_trace()
+        if self.classic:
+            simg = simg + torch.randn_like(simg) * real_sigma
+        else:
+            pass
 
         # timg += torch.randn_like(timg) * sigma
         timg = timg + torch.randn_like(timg) * real_sigma

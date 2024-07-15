@@ -24,4 +24,4 @@ python train_noise_bias.py fit \
   --model.real_high 0.5 \
   --model.alpha $ALPHA \
   --model.loss logitmse \
-  --model.optimizer_options "{'lr': 0.0001}"
+  --model.optimizer_options "{'lr': 0.001}"

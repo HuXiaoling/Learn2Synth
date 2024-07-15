@@ -31,10 +31,10 @@ Experimental results on different settings:
 
 | Setting | Preset Sigma | File | States |
 | :----: | :----: | :----: | :----: |
-| SynthSeg  | -0.0023   | train_synthseg_free_learned.sh    | Running   |
-| SynthSeg  | 0.0402    | train_synthseg_005_learned.sh     | Running   |
-| SynthSeg  | 0.0993    | train_synthseg_010_learned.sh     | Running   |
-| SynthSeg  | 0.1466    | train_synthseg_015_learned.sh     | Running   |
+| SynthSeg  | -0.0023   | train_synthseg_free_learned.sh    | To run    |
+| SynthSeg  | 0.0402    | train_synthseg_005_learned.sh     | To run    |
+| SynthSeg  | 0.0993    | train_synthseg_010_learned.sh     | To run    |
+| SynthSeg  | 0.1466    | train_synthseg_015_learned.sh     | To run    |
 | SynthSeg  | 0.1328    | train_synthseg_vary_learned.sh    | To run    |
 
 | Pre-set | sigma = 0 | Dice |
@@ -265,18 +265,18 @@ Sigmoid:
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | 0             | 0.5/0.5/0.5   | train_synthseg_free_05.sh | Running   |
-| SynthSeg  | 0.05          | 0.5/0.5/0.5   | train_synthseg_005_05.sh  | Done      |
-| SynthSeg  | 0.1           | 0.5/0.5/0.5   | train_synthseg_010_05.sh  | Done      |
-| SynthSeg  | 0.15          | 0.5/0.5/0.5   | train_synthseg_015_05.sh  | Done      |
-| SynthSeg  | [0.025, 0.2]  | 0.5/0.5/0.5   | train_synthseg_vary_05.sh | Done      |
+| SynthSeg  | 0.05          | 0.5/0.5/0.5   | train_synthseg_005_05.sh  | Running   |
+| SynthSeg  | 0.1           | 0.5/0.5/0.5   | train_synthseg_010_05.sh  | Running   |
+| SynthSeg  | 0.15          | 0.5/0.5/0.5   | train_synthseg_015_05.sh  | Running   |
+| SynthSeg  | [0.025, 0.2]  | 0.5/0.5/0.5   | train_synthseg_vary_05.sh | Running   |
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | 0.        |                       |                                   | To run    |
-| SynthSeg  | 0.0503    | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh  | Done      |
-| SynthSeg  | 0.0840    | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh  | Done      |
+| SynthSeg  | 0.0503    | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh  | Running   |
+| SynthSeg  | 0.0840    | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh  | Running   |
 | SynthSeg  | 0.1460    | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh  | Running   |
-| SynthSeg  | 0.1342    | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh | Done      |
+| SynthSeg  | 0.1342    | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh | Running   |
 
 Ablation study for learning rate:
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | LR | States |

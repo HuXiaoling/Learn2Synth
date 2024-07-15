@@ -21,4 +21,4 @@ python train_noise.py fit \
   --model.real_sigma_max 0 \
   --model.alpha $ALPHA \
   --model.loss logitmse \
-  --model.optimizer_options "{'lr': 0.0001}"
+  --model.optimizer_options "{'lr': 0.001}"

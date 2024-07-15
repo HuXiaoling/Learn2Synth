@@ -106,6 +106,7 @@ class Model(pl.LightningModule):
         self.real_low = real_low
         self.real_middle = real_middle
         self.real_high = real_high
+        self.classic = classic
 
         segnet = UNet(
             ndim,
@@ -121,7 +122,7 @@ class Model(pl.LightningModule):
         # synth = cc.batch(synth(SynthFromLabelTransform(order=1)))
         synth = SynthFromLabelTransform(order=1, resolution=False, snr=False, bias=False)
         synth = cc.batch(DiffSynthFull(synth, real_sigma_min=real_sigma_min, real_sigma_max=real_sigma_max, \
-                                       real_low=real_low, real_middle=real_middle, real_high=real_high))
+                                       real_low=real_low, real_middle=real_middle, real_high=real_high, classic=classic))
 
         if loss == 'dice':
             loss = DiceLoss(activation='Softmax')
@@ -329,7 +330,7 @@ class DiffSynthFull(torch.nn.Module):
     The other (the source) does not have noise.
     """
 
-    def __init__(self, synth, real_sigma_min=0.15, real_sigma_max=0.15, real_low=0.5, real_middle=0.5, real_high=0.5):
+    def __init__(self, synth, real_sigma_min=0.15, real_sigma_max=0.15, real_low=0.5, real_middle=0.5, real_high=0.5, classic=False):
         super().__init__()
         self.synth = synth
         self.real_sigma_min = real_sigma_min
@@ -337,6 +338,7 @@ class DiffSynthFull(torch.nn.Module):
         self.real_low = real_low
         self.real_middle = real_middle
         self.real_high = real_high
+        self.classic = classic
 
     def forward(self, slab, _, tlab):
         # slab: labels of the source (synth) domain
@@ -372,6 +374,12 @@ class DiffSynthFull(torch.nn.Module):
                                           size=(timg.shape[1], timg.shape[2]), mode='bilinear', align_corners=False).to(timg)
         bias_field_high = F.interpolate(bias_field_ori_high.unsqueeze(0).unsqueeze(0), \
                                         size=(timg.shape[1], timg.shape[2]), mode='bilinear', align_corners=False).to(timg)
+
+        if self.classic:
+            simg = simg * (bias_field_low.squeeze(0) ** self.real_low) * (bias_field_middle.squeeze(0) ** self.real_middle) \
+                * (bias_field_high.squeeze(0) ** self.real_high) + torch.randn_like(simg) * real_sigma
+        else:
+            pass
 
         # timg += torch.randn_like(timg) * sigma
         timg = timg * (bias_field_low.squeeze(0) ** self.real_low) * (bias_field_middle.squeeze(0) ** self.real_middle) \
