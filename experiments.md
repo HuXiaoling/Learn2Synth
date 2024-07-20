@@ -289,7 +289,6 @@ Sigmoid:
 Ablation study for learning rate:
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | LR | States |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
-
 | Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05.sh          | 0.0001    | Above     |
 | Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_0002.sh  | 0.0002    | Running   |
 | Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05_lr_0005.sh  | 0.0005    | Running   |
