@@ -1,4 +1,4 @@
-### Print the parameters
+## Print the parameters
 ```
 model['state_dict']['network.synthnet.sigma'], torch.sigmoid(model['state_dict']['network.synthnet.weight_low']), 
 torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigmoid(model['state_dict']['network.synthnet.weight_high'])
