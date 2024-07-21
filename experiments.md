@@ -1,6 +1,12 @@
-Experiemnt1:
+### Print the parameters
+```
+model['state_dict']['network.synthnet.sigma'], torch.sigmoid(model['state_dict']['network.synthnet.weight_low']), 
+torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigmoid(model['state_dict']['network.synthnet.weight_high'])
+```
 
-Experimental results on different settings:
+## Experiemnt1:
+
+### Experimental results on different settings:
 
 (Low bound?) Row is different models, column is different level noise images
 
@@ -196,11 +202,11 @@ Sigmoid:
 
 | Pre-set | sigma = 0 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
-| model1        | -0.0003   | 0.5915    | 0.5786    | 0.5812    | 0.883 |
-| model2        | -0.0020   | 0.5898    | 0.5786    | 0.5817    | 0.898 |
-| model3        | -0.0028   | 0.5897    | 0.5789    | 0.5827    | 0.895 |
-| model4        | -0.0019   | 0.5882    | 0.5792    | 0.5833    | 0.899 |
-| **model5**    | -0.0019   | 0.5881    | 0.5792    | 0.5833    | 0.902 |
+| model1        | -0.0258   | 0.4473    | 0.5577    | 0.5587    | 0.910 |
+| **model2**    | -0.0205   | 0.4358    | 0.5567    | 0.5583    | 0.924 |
+| model3        | -0.0204   | 0.4358    | 0.5567    | 0.5537    | 0.902 |
+| model4        | -0.0201   | 0.4381    | 0.5566    | 0.5535    | 0.919 |
+| model5        | -0.0045   | 0.5537    | 0.5578    | 0.5694    | 0.918 |
 
 | Pre-set | sigma = 0.05 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -236,21 +242,21 @@ Sigmoid:
 
 | Noise-level | noise-free (LearnableSynthSeg)  | sigma = 0.05  | sigma = 0.1 | sigma = 0.15    | sigma = [0.025, 0.2] |
 | :----: | :----: | :----: | :----: | :----: | :----: |
-| noise-free    | 0.895*    | 0.900 | 0.894 | 0.881 | 0.875 |
-| 0.05          | 0.355*    | 0.894 | 0.889 | 0.869 | 0.868 |
-| 0.1           | 0.230*    | 0.867 | 0.872 | 0.856 | 0.870 |
-| 0.15          | 0.166*    | 0.696 | 0.832 | 0.854 | 0.851 |
-| [0.025, 0.2]  | 0.240*    | 0.744 | 0.849 | 0.862 | 0.867 |
+| noise-free    | 0.924 | 0.900 | 0.894 | 0.881 | 0.875 |
+| 0.05          | 0.867 | 0.894 | 0.889 | 0.869 | 0.868 |
+| 0.1           | 0.748 | 0.867 | 0.872 | 0.856 | 0.870 |
+| 0.15          | 0.619 | 0.696 | 0.832 | 0.854 | 0.851 |
+| [0.025, 0.2]  | 0.729 | 0.744 | 0.849 | 0.862 | 0.867 |
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | 0.5/0.5/0.5   | train_free_05.sh          | Running   |
-| Learn2Synth   | 0.05          | Fixed | 0.5/0.5/0.5   | train_005_05.sh      | Done      |
-| Learn2Synth   | 0.1           | Fixed | 0.5/0.5/0.5   | train_010_05.sh      | Done      |
+| Learn2Synth   | 0.05          | Fixed | 0.5/0.5/0.5   | train_005_05.sh           | Done      |
+| Learn2Synth   | 0.1           | Fixed | 0.5/0.5/0.5   | train_010_05.sh           | Done      |
 | Learn2Synth   | 0.15          | Fixed | 0.5/0.5/0.5   | train_015_05.sh           | Done      |
-| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.5/0.5/0.5   | train_vary_05.sh     | Done      |
+| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.5/0.5/0.5   | train_vary_05.sh          | Done      |
 | Learn2Synth   | [0.025, 0.2]  | Range | -/-/-         | train_vary_vary.sh        | Done      |
-| Learn2Synth   | [0.025, 0.2]  | Range | 0.5/0.5/0.5   | train_vary_vary_05_bias.sh| Running   |
+| Learn2Synth   | [0.025, 0.2]  | Range | 0.5/0.5/0.5   | train_vary_vary_05_bias.sh| Done      |
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -280,9 +286,9 @@ Sigmoid:
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | 0.        |                       |                                   | To run    |
-| SynthSeg  | 0.0503    | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh  | Running (Pay attention to this one!)  |
-| SynthSeg  | 0.0840    | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh  | Running (Pay attention to this one!)  |
+| SynthSeg  | -0.0205   | 0.4358/0.5567/0.5583  | rain_synthseg_free_05_learned.sh  | Running   |
+| SynthSeg  | 0.0503    | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh  | Running   |
+| SynthSeg  | 0.0840    | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh  | Re-run    |
 | SynthSeg  | 0.1460    | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh  | Running   |
 | SynthSeg  | 0.1342    | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh | Running   |
 
