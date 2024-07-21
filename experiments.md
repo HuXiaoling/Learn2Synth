@@ -4,9 +4,9 @@ model['state_dict']['network.synthnet.sigma'], torch.sigmoid(model['state_dict']
 torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigmoid(model['state_dict']['network.synthnet.weight_high'])
 ```
 
-## Experiemnt1:
+## Experiemnt1: only noise
 
-### Experimental results on different settings:
+### Summary: Training on different noise levels and testing on different noise levels as well
 
 (Low bound?) Row is different models, column is different level noise images
 
@@ -18,6 +18,8 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | 0.15          | 0.1423    | 0.0918    | 0.4917    | 0.7994    | 0.8396    | 0.8332    |
 | vary          | 0.2045    | 0.1505    | 0.6353    | 0.8310    | 0.8336    | 0.8386    |
 
+### Learn2Synth: Different noise levels
+
 | Setting | Preset Sigma | Opmitized Sigma | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | train_0.sh                    | Done  |
@@ -27,6 +29,8 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | Learn2Synth   | [0.025, 0.2]  | Fixed | train_vary.sh (experiment_15) | Done  |
 | Learn2Synth   | [0.025, 0.2]  | Range | train_vary_vary.sh            | Done  |
 
+### SynthSeg: Different noise levels
+
 | Setting | Preset Sigma | File | States |
 | :----: | :----: | :----: | :----: |
 | SynthSeg  | 0             | train_free_ori.sh     | Done  |
@@ -34,6 +38,8 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | SynthSeg  | 0.1           | train_010_free.sh     | Done  |
 | SynthSeg  | 0.15          | train_015_free.sh     | Done  |
 | SynthSeg  | [0.025, 0.2]  | train_vary_free.sh    | Done  |
+
+### SynthSeg: Different noise levels by using the parameters learned by Learn2Synth
 
 | Setting | Preset Sigma | File | States |
 | :----: | :----: | :----: | :----: |
@@ -43,6 +49,8 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | SynthSeg  | 0.1466    | train_synthseg_015_learned.sh     | To run    |
 | SynthSeg  | 0.1328    | train_synthseg_vary_learned.sh    | To run    |
 
+### Learn2Synth: Results for $\sigma = 0$
+
 | Pre-set | sigma = 0 | Dice |
 | :----: | :----: | :----: |
 | model1        | 0.0004    | 0.889 |
@@ -50,6 +58,8 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model3        | -0.0008   | 0.897 |
 | model4        | -0.0014   | 0.897 |
 | **model5**    | -0.0023   | 0.898 |
+
+### Learn2Synth: Results for $\sigma = 0.05$
 
 | Pre-set | sigma = 0.05 | Dice |
 | :----: | :----: | :----: |
@@ -59,6 +69,8 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model4        | 0.0435    | 0.877 |
 | model5        | 0.0440    | 0.879 |
 
+### Learn2Synth: Results for $\sigma = 0.1$
+
 | Pre-set | sigma = 0.1 | Dice |
 | :----: | :----: | :----: |
 | model1        | 0.0958    | 0.853 |
@@ -66,6 +78,8 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model3        | 0.0981    | 0.854 |
 | model4        | 0.0971    | 0.859 |
 | model5        | 0.0977    | 0.852 |
+
+### Learn2Synth: Results for $\sigma = 0.15$
 
 | Pre-set | sigma = 0.15 | Dice |
 | :----: | :----: | :----: |
@@ -75,6 +89,8 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | **model4**    | 0.1466    | 0.850 |
 | model5        | 0.1482    | 0.823 |
 
+### Learn2Synth: Results for $\sigma = [0.025, 0.2]$
+
 | Pre-set | sigma = [0.025, 0.2] | Dice |
 | :----: | :----: | :----: |
 | **model1**    | 0.1328    | 0.841 |
@@ -83,15 +99,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model4        | 0.1318    | 0.830 |
 | model5        | 0.1376    | 0.840 |
 
-| Noise-level | noise-free |
-| :----: | :----: |
-| model1    | 0.7212/0.7129 |
-| model2    | 0.7280/0.7285 |
-| model3    | 0.7174/0.7220 |
-| model4    | 0.7019/0.7202 |
-| model5    | 0.7301/0.7247 |
-
-Fine-scale sigma results:
+### Learn2Synth: Results for fine-scale sigma settings
 
 | Pre-set sigma | 0.05 | 0.09 | 0.095 | 0.1 | 0.105 | 0.11 | 0.15 | vary |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -101,8 +109,6 @@ Fine-scale sigma results:
 | model4    | 0.0435    | 0.0858    | 0.0918    | 0.0971    | 0.1010    | 0.1056    | 0.1466    | 0.1318    |
 | model5    | 0.0440    | 0.0851    | 0.0934    | 0.0977    | 0.0993    | 0.1067    | 0.1482    | 0.1376    |
 
-Fine-scale sigma results:
-
 | Pre-set sigma | 0.095 | 0.096 | 0.097 | 0.098 | 0.099 | 0.1 |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
 | model1    | 0.0934/0.8507 | 0.0900/0.8532 | 0.0931/0.8694 | 0.0942/0.8755 | 0.0935/0.8745 | 0.0958/0.8502 |
@@ -111,10 +117,15 @@ Fine-scale sigma results:
 | model4    | 0.0945/0.8584 | 0.0899/0.8567 | 0.0913/0.8604 | 0.0948/0.8673 | 0.0941/0.8616 | 0.0971/0.8677 |
 | model5    | 0.0933/0.8590 | 0.0897/0.8697 | 0.0929/0.8620 | 0.0965/0.8705 | 0.0983/0.8741 | 0.0977/0.8630 |
 
-Experiment2: synthetic real images = noise_free_image * bias filed + noise
+## Experiemnt2: both noise and bias field
+```
+synthetic real images = noise_free_image * bias filed + noise
 
 Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> upsampling to 256 * 256) 
 ** (eps_b * b)) * ((8 * 8 -> upsampling to 256 * 256) ** (eps_c * c))
+```
+
+### Learn2Synth: Results for $\sigma = 0.05, c_{low} = 1, c_{middle} = 0, c_{high} = 0$
 
 | Pre-set | sigma = 0.05 | low = 1 | middle = 0 | high = 0 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -124,6 +135,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.0535    | 0.1377    | 0.2022    | 0.5514    | 0.8548    |
 | model5    | 0.0560    | 0.1334    | 0.1994    | 0.5519    | 0.8515    |
 
+### Learn2Synth: Results for $\sigma = 0.1, c_{low} = 1, c_{middle} = 0, c_{high} = 0$
+
 | Pre-set | sigma = 0.10 | low = 1 | middle = 0 | high = 0 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | model1    | 0.0917    | 0.1266    | 0.1835    | 0.5389    | 0.8362    |
@@ -131,6 +144,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model3    | 0.0920    | 0.1214    | 0.1833    | 0.5386    | 0.8300    |
 | model4    | 0.0961    | 0.1083    | 0.1750    | 0.5321    | 0.8290    |
 | model5    | 0.0981    | 0.0882    | 0.1581    | 0.5201    | 0.8180    |
+
+### Learn2Synth: Results for $\sigma = 0.15, c_{low} = 1, c_{middle} = 0, c_{high} = 0$
 
 | Pre-set | sigma = 0.15 | low = 1 | middle = 0 | high = 0 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -140,7 +155,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.1389    | 0.0992    | 0.1721    | 0.5150    | 0.8276    |
 | model5    | 0.1402    | 0.0923    | 0.1662    | 0.5090    | 0.8254    |
 
-Check if sigma below the pre-set value
+### Check if $\sigma$ always below the pre-set value
 
 | Model | Sigma | Sigma + 0.2 |
 | :----: | :----: | :----: |
@@ -150,6 +165,8 @@ Check if sigma below the pre-set value
 | model4    | -0.1046   | 0.0954    |
 | model5    | -0.1043   | 0.0957    |
 
+### Learn2Synth: Results for $\sigma = 0.05, c_{low} = 0.5$
+
 | Pre-set | sigma = 0.05 | low = 0.5 |
 | :----: | :----: | :----: |
 | model1    | 0.0498    | 0.4947    | 
@@ -157,6 +174,8 @@ Check if sigma below the pre-set value
 | model3    | 0.0511    | 0.4922    |
 | model4    | 0.0480    | 0.4901    |
 | model5    | 0.0489    | 0.4890    |
+
+### Learn2Synth: Results for $\sigma = 0.05, c_{middle} = 0.5$
 
 | Pre-set | sigma = 0.05 | middle = 0.5 |
 | :----: | :----: | :----: |
@@ -166,6 +185,8 @@ Check if sigma below the pre-set value
 | model4    | 0.0482    | 0.5852    |
 | model5    | 0.0480    | 0.5854    |
 
+### Learn2Synth: Results for $\sigma = 0.05, c_{high} = 0.5$
+
 | Pre-set | sigma = 0.05 | high = 0.5 |
 | :----: | :----: | :----: |
 | model1    | 0.0501    | 0.5742    | 
@@ -173,6 +194,8 @@ Check if sigma below the pre-set value
 | model3    | 0.0506    | 0.5744    |
 | model4    | 0.0511    | 0.5745    |
 | model5    | 0.0503    | 0.5740    |
+
+### Learn2Synth: Results for $\sigma = 0.1, c_{low} = 0.5$
 
 | Pre-set | sigma = 0.1 | low = 0.5 |
 | :----: | :----: | :----: |
@@ -182,6 +205,8 @@ Check if sigma below the pre-set value
 | model4    | 0.0984    | 0.5965    |
 | model5    | 0.0985    | 0.5964    |
 
+### Learn2Synth: Results for $\sigma = 0.1, c_{middle} = 0.5$
+
 | Pre-set | sigma = 0.1 | middle = 0.5 |
 | :----: | :----: | :----: |
 | model1    | 0.1016    | 0.5767    | 
@@ -189,6 +214,8 @@ Check if sigma below the pre-set value
 | model3    | 0.1031    | 0.5767    |
 | model4    | 0.1036    | 0.5762    |
 | model5    | 0.1042    | 0.5761    |
+
+### Learn2Synth: Results for $\sigma = 0.1, c_{high} = 0.5$
 
 | Pre-set | sigma = 0.1 | high = 0.5 |
 | :----: | :----: | :----: |
@@ -198,7 +225,17 @@ Check if sigma below the pre-set value
 | model4    | 0.0991    | 0.6013    |
 | model5    | 0.0994    | 0.6014    |
 
-Sigmoid:
+### Summary: Training on different noise levels and testing on different noise levels as well
+
+| Noise-level | noise-free (LearnableSynthSeg)  | sigma = 0.05  | sigma = 0.1 | sigma = 0.15    | sigma = [0.025, 0.2] |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+| noise-free    | 0.924 | 0.900 | 0.894 | 0.881 | 0.875 |
+| 0.05          | 0.867 | 0.894 | 0.889 | 0.869 | 0.868 |
+| 0.1           | 0.748 | 0.867 | 0.872 | 0.856 | 0.870 |
+| 0.15          | 0.619 | 0.696 | 0.832 | 0.854 | 0.851 |
+| [0.025, 0.2]  | 0.729 | 0.744 | 0.849 | 0.862 | 0.867 |
+
+### Learn2Synth: Results for $\sigma = 0, c_{low} = 0.5, c_{middle} = 0.5, c_{high} = 0.5$
 
 | Pre-set | sigma = 0 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -208,6 +245,8 @@ Sigmoid:
 | model4        | -0.0201   | 0.4381    | 0.5566    | 0.5535    | 0.919 |
 | model5        | -0.0045   | 0.5537    | 0.5578    | 0.5694    | 0.918 |
 
+### Learn2Synth: Results for $\sigma = 0.05, c_{low} = 0.5, c_{middle} = 0.5, c_{high} = 0.5$
+
 | Pre-set | sigma = 0.05 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | model1        | 0.0492    | 0.3438    | 0.4477    | 0.7136    | 0.8878    |
@@ -215,6 +254,8 @@ Sigmoid:
 | model3        | 0.0488    | 0.3153    | 0.4288    | 0.7167    | 0.8977    |
 | model4        | 0.0481    | 0.3150    | 0.4285    | 0.7166    | 0.8933    |
 | model5        | 0.0479    | 0.3148    | 0.4285    | 0.7166    | 0.8916    |
+
+### Learn2Synth: Results for $\sigma = 0.1, c_{low} = 0.5, c_{middle} = 0.5, c_{high} = 0.5$
 
 | Pre-set | sigma = 0.1 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -224,6 +265,8 @@ Sigmoid:
 | model4        | 0.0857    | 0.5870    | 0.7590    | 0.9669    | 0.8525    |
 | **model5**    | 0.0840    | 0.5887    | 0.7618    | 0.9680    | 0.8643    |
 
+### Learn2Synth: Results for $\sigma = 0.15, c_{low} = 0.5, c_{middle} = 0.5, c_{high} = 0.5$
+
 | Pre-set | sigma = 0.15 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | model1        | 0.1474    | 0.4012    | 0.4708    | 0.6444    | 0.856 |
@@ -231,6 +274,8 @@ Sigmoid:
 | model3        | 0.1507    | 0.3674    | 0.4476    | 0.6594    | 0.847 |
 | model4        | 0.1471    | 0.3653    | 0.4470    | 0.6598    | 0.856 |
 | model5        | 0.1451    | 0.3552    | 0.4390    | 0.6612    | 0.854 |
+
+### Learn2Synth: Results for $\sigma = [0.025, 0.2], c_{low} = 0.5, c_{middle} = 0.5, c_{high} = 0.5$
 
 | Pre-set | sigma = [0.025, 0.2] | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -240,13 +285,7 @@ Sigmoid:
 | model4        | 0.1339    | 0.3973    | 0.5059    | 0.7986    | 0.8591    |
 | model5        | 0.1325    | 0.3932    | 0.5024    | 0.7968    | 0.8479    |
 
-| Noise-level | noise-free (LearnableSynthSeg)  | sigma = 0.05  | sigma = 0.1 | sigma = 0.15    | sigma = [0.025, 0.2] |
-| :----: | :----: | :----: | :----: | :----: | :----: |
-| noise-free    | 0.924 | 0.900 | 0.894 | 0.881 | 0.875 |
-| 0.05          | 0.867 | 0.894 | 0.889 | 0.869 | 0.868 |
-| 0.1           | 0.748 | 0.867 | 0.872 | 0.856 | 0.870 |
-| 0.15          | 0.619 | 0.696 | 0.832 | 0.854 | 0.851 |
-| [0.025, 0.2]  | 0.729 | 0.744 | 0.849 | 0.862 | 0.867 |
+### Learn2Synth: All settings for $c_{low} = 0.5, c_{middle} = 0.5, c_{high} = 0.5$
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -258,6 +297,8 @@ Sigmoid:
 | Learn2Synth   | [0.025, 0.2]  | Range | -/-/-         | train_vary_vary.sh        | Done      |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.5/0.5/0.5   | train_vary_vary_05_bias.sh| Done      |
 
+### Learn2Synth: All settings for $c_{low} = 0.8, c_{middle} = 0.8, c_{high} = 0.8$
+
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | 0.8/0.8/0.8   | train_free_08.sh          | Running   |
@@ -266,6 +307,8 @@ Sigmoid:
 | Learn2Synth   | 0.15          | Fixed | 0.8/0.8/0.8   | train_015_08.sh           | Done      |
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.8/0.8/0.8   | train_vary_08.sh          | Done      |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.8/0.8/0.8   | train_vary_vary_08_bias.sh| Done      |
+
+### Learn2Synth: All settings for $c_{low} = 0.2, c_{middle} = 0.2, c_{high} = 0.2$
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -276,6 +319,8 @@ Sigmoid:
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.2/0.2/0.2   | train_vary_02.sh          | Running   |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.2/0.2/0.2   | train_vary_vary_02_bias.sh| Running   |
 
+### SynthSeg: All settings for $c_{low} = 0.5, c_{middle} = 0.5, c_{high} = 0.5$
+
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | 0             | 0.5/0.5/0.5   | train_synthseg_free_05.sh | Running   |
@@ -284,15 +329,18 @@ Sigmoid:
 | SynthSeg  | 0.15          | 0.5/0.5/0.5   | train_synthseg_015_05.sh  | Running   |
 | SynthSeg  | [0.025, 0.2]  | 0.5/0.5/0.5   | train_synthseg_vary_05.sh | Running   |
 
+### SynthSeg: All settings for $c_{low} = 0.5, c_{middle} = 0.5, c_{high} = 0.5$ using learned parameters for Learn2Synth
+
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | -0.0205   | 0.4358/0.5567/0.5583  | rain_synthseg_free_05_learned.sh  | Running   |
+| SynthSeg  | -0.0205   | 0.4358/0.5567/0.5583  | train_synthseg_free_05_learned.sh | Running   |
 | SynthSeg  | 0.0503    | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh  | Running   |
 | SynthSeg  | 0.0840    | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh  | Re-run    |
 | SynthSeg  | 0.1460    | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh  | Running   |
 | SynthSeg  | 0.1342    | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh | Running   |
 
-Ablation study for learning rate:
+### Ablation study for learning rate
+
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | LR | States |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0     | Fixed | 0.5/0.5/0.5   | train_free_05.sh          | 0.0001    | Above     |
