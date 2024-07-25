@@ -310,7 +310,6 @@ class DiffSynthFull(torch.nn.Module):
    
         simg, slab = self.synth(slab)
         timg, tlab = self.synth(tlab)
-        import pdb; pdb.set_trace()
         if self.classic:
             simg = simg + torch.randn_like(simg) * real_sigma
         else:

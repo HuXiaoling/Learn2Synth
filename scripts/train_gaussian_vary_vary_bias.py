@@ -24,19 +24,49 @@ import numpy as np
 import torch
 import math
 import fnmatch
+import random
+import torch.nn.functional as F
+from torchmetrics.classification import Dice as dice_compute
 
-
-class Noisify(torch.nn.Module):
+class Noisify_Bias_Field(torch.nn.Module):
     """
     An extremely simple synth+ network that just 
     adds scaled Gaussian noise
     """
     def __init__(self):
         super().__init__()
-        self.sigma = torch.nn.Parameter(torch.rand([]), requires_grad=True)
+        self.sigma_min = torch.nn.Parameter(torch.rand([]), requires_grad=True)
+        self.sigma_max = torch.nn.Parameter(torch.rand([]), requires_grad=True)
+
+        self.weight_low = torch.nn.Parameter(torch.rand([]), requires_grad=True)
+        self.weight_middle = torch.nn.Parameter(torch.rand([]), requires_grad=True)
+        self.weight_high = torch.nn.Parameter(torch.rand([]), requires_grad=True)
+        self.low_bound = 0.5
+        self.up_bound = 2
 
     def forward(self, x):
-        return x + torch.randn_like(x) * self.sigma.to(x)
+        bias_field_ori_low = torch.rand([2, 2]).to(x) * (self.up_bound - self.low_bound) + self.low_bound
+        bias_field_ori_middle = torch.rand([4, 4]).to(x) * (self.up_bound - self.low_bound) + self.low_bound
+        bias_field_ori_high = torch.rand([8, 8]).to(x) * (self.up_bound - self.low_bound) + self.low_bound
+        bias_field_low = F.interpolate(bias_field_ori_low.unsqueeze(0).unsqueeze(0), \
+                                       size=(x.shape[2], x.shape[3]), mode='bilinear', align_corners=False)
+        bias_field_middle = F.interpolate(bias_field_ori_middle.unsqueeze(0).unsqueeze(0), \
+                                          size=(x.shape[2], x.shape[3]), mode='bilinear', align_corners=False)
+        bias_field_high = F.interpolate(bias_field_ori_high.unsqueeze(0).unsqueeze(0), \
+                                        size=(x.shape[2], x.shape[3]), mode='bilinear', align_corners=False)
+        low_eps = torch.sigmoid(self.weight_low)
+        middle_eps = torch.sigmoid(self.weight_middle)
+        high_eps = torch.sigmoid(self.weight_high)
+        # low_eps = sigmoid(self.weight_low))
+        # set low_eps to fix value in real branch: (0,1): 
+        # middle_eps = high_eps = 0; low_eps = 1
+        # bias_field_low ** low_eps
+
+        self.sigma = torch.rand([]).to(x) * (self.sigma_max - self.sigma_min) + self.sigma_min
+    
+        return x * (bias_field_low.squeeze(0) ** low_eps) * \
+                (bias_field_middle.squeeze(0) ** middle_eps) * \
+                (bias_field_high.squeeze(0) ** high_eps) + torch.randn_like(x) * self.sigma.to(x)
 
 
 class Model(pl.LightningModule):
@@ -58,6 +88,11 @@ class Model(pl.LightningModule):
                  #  synth_shared: bool = True,
                  loss: str = 'dice',
                  alpha: float = 1.,
+                 real_sigma_min: float = 0.15,
+                 real_sigma_max: float = 0.15,
+                 real_low: float = 0.5, 
+                 real_middle: float = 0.5,
+                 real_high: float = 0.5,
                  classic: bool = False,
                  optimizer: str = 'Adam',
                  optimizer_options: dict = dict(lr=1e-3),
@@ -69,6 +104,11 @@ class Model(pl.LightningModule):
         self.optimizer = optimizer
         self.optimizer_options = dict(optimizer_options or {})
         self.alpha = alpha
+        self.real_sigma_min = real_sigma_min
+        self.real_sigma_max = real_sigma_max
+        self.real_low = real_low
+        self.real_middle = real_middle
+        self.real_high = real_high
 
         segnet = UNet(
             ndim,
@@ -83,7 +123,8 @@ class Model(pl.LightningModule):
         # synth = SharedSynth if synth_shared else DiffSynth
         # synth = cc.batch(synth(SynthFromLabelTransform(order=1)))
         synth = SynthFromLabelTransform(order=1, resolution=False, snr=False, bias=False)
-        synth = cc.batch(DiffSynthFull(synth))
+        synth = cc.batch(DiffSynthFull(synth, real_sigma_min=real_sigma_min, real_sigma_max=real_sigma_max, \
+                                       real_low=real_low, real_middle=real_middle, real_high=real_high))
 
         if loss == 'dice':
             loss = DiceLoss(activation='Softmax')
@@ -113,7 +154,7 @@ class Model(pl.LightningModule):
         if self.classic:
             self.network = SynthSeg(segnet, synth, loss)
         else:
-            synthnet = Noisify()
+            synthnet = Noisify_Bias_Field()
             # synthnet = UNet(
             #     ndim,
             #     features=synth_features,
@@ -149,11 +190,17 @@ class Model(pl.LightningModule):
         # self.log(f'train_loss_real_{name}', loss_real)
         # self.log(f'train_loss_{name}', loss)
         self.log(f'train_loss', loss)
+        self.log(f'sigma_min',self.network.synthnet.sigma_min, prog_bar=True)
+        self.log(f'sigma_max',self.network.synthnet.sigma_max, prog_bar=True)
+        self.log(f'low_coefficient', torch.sigmoid(self.network.synthnet.weight_low), prog_bar=True)
+        self.log(f'middle_coefficient', torch.sigmoid(self.network.synthnet.weight_middle), prog_bar=True)
+        self.log(f'high_coefficient', torch.sigmoid(self.network.synthnet.weight_high), prog_bar=True)
 
         return loss
 
     def validation_step(self, batch, batch_idx):
         name = type(self.network.loss).__name__
+        dice_real = 0
         if self.classic:
             if batch_idx == 0:
                 root = f'{self.logger.log_dir}/images'
@@ -163,18 +210,25 @@ class Model(pl.LightningModule):
                 synth_image, synth_ref, real_image, real_ref \
                     = self.network.synth_and_eval_for_plot(*batch)
                 if epoch % 10 == 0:
-                    save(pred_synth.softmax(1).movedim(0, -1).movedim(0, -2),
-                        f'{root}/epoch-{epoch:04d}_synth-pred.nii.gz')
-                    save(pred_real.softmax(1).movedim(0, -1).movedim(0, -2),
-                        f'{root}/epoch-{epoch:04d}_real-pred.nii.gz')
-                    save(synth_image.squeeze(1).movedim(0, -1),
-                        f'{root}/epoch-{epoch:04d}_synth-image.nii.gz')
-                    save(real_image.squeeze(1).movedim(0, -1),
-                        f'{root}/epoch-{epoch:04d}_real-image.nii.gz')
-                    save(synth_ref.squeeze(1).movedim(0, -1).to(torch.uint8),
-                        f'{root}/epoch-{epoch:04d}_synth-ref.nii.gz')
-                    save(real_ref.squeeze(1).movedim(0, -1).to(torch.uint8),
-                        f'{root}/epoch-{epoch:04d}_real-ref.nii.gz')
+                    # save(pred_synth.softmax(1).movedim(0, -1).movedim(0, -2),
+                    #     f'{root}/epoch-{epoch:04d}_synth-pred.nii.gz')
+                    # save(pred_real.softmax(1).movedim(0, -1).movedim(0, -2),
+                    #     f'{root}/epoch-{epoch:04d}_real-pred.nii.gz')
+                    # save(synth_image.squeeze(1).movedim(0, -1),
+                    #     f'{root}/epoch-{epoch:04d}_synth-image.nii.gz')
+                    # save(real_image.squeeze(1).movedim(0, -1),
+                    #     f'{root}/epoch-{epoch:04d}_real-image.nii.gz')
+                    # save(synth_ref.squeeze(1).movedim(0, -1).to(torch.uint8),
+                    #     f'{root}/epoch-{epoch:04d}_synth-ref.nii.gz')
+                    # save(real_ref.squeeze(1).movedim(0, -1).to(torch.uint8),
+                    #     f'{root}/epoch-{epoch:04d}_real-ref.nii.gz')
+                    
+                    for i in range(real_ref.squeeze(1).movedim(0, -1).shape[2]):
+                        dice_score = dice_compute(average='micro', ignore_index = 0)
+                        dice_real += dice_score(np.argmax(pred_real[i,].cpu(), axis=0), real_ref[i,:,:].cpu())
+                    
+                    dice_real /= real_ref.squeeze(1).movedim(0, -1).shape[2]
+                    self.log(f'dice_real', dice_real, prog_bar=True)
             else:
                 loss_synth, loss_real = self.network.synth_and_eval_step(*batch)
         else:
@@ -187,22 +241,29 @@ class Model(pl.LightningModule):
                 synth_image, synth0_image, synth_ref, real_image, real_ref \
                     = self.network.synth_and_eval_for_plot(*batch)
                 if epoch % 10 == 0:
-                    save(pred_synth.softmax(1).movedim(0, -1).movedim(0, -2),
-                        f'{root}/epoch-{epoch:04d}_synth-pred.nii.gz')
-                    save(pred_synth0.softmax(1).movedim(0, -1).movedim(0, -2),
-                        f'{root}/epoch-{epoch:04d}_synth0-pred.nii.gz')
-                    save(pred_real.softmax(1).movedim(0, -1).movedim(0, -2),
-                        f'{root}/epoch-{epoch:04d}_real-pred.nii.gz')
-                    save(synth_image.squeeze(1).movedim(0, -1),
-                        f'{root}/epoch-{epoch:04d}_synth-image.nii.gz')
-                    save(synth0_image.squeeze(1).movedim(0, -1),
-                        f'{root}/epoch-{epoch:04d}_synth0-image.nii.gz')
-                    save(real_image.squeeze(1).movedim(0, -1),
-                        f'{root}/epoch-{epoch:04d}_real-image.nii.gz')
-                    save(synth_ref.squeeze(1).movedim(0, -1).to(torch.uint8),
-                        f'{root}/epoch-{epoch:04d}_synth-ref.nii.gz')
-                    save(real_ref.squeeze(1).movedim(0, -1).to(torch.uint8),
-                        f'{root}/epoch-{epoch:04d}_real-ref.nii.gz')
+                    # save(pred_synth.softmax(1).movedim(0, -1).movedim(0, -2),
+                    #     f'{root}/epoch-{epoch:04d}_synth-pred.nii.gz')
+                    # save(pred_synth0.softmax(1).movedim(0, -1).movedim(0, -2),
+                    #     f'{root}/epoch-{epoch:04d}_synth0-pred.nii.gz')
+                    # save(pred_real.softmax(1).movedim(0, -1).movedim(0, -2),
+                    #     f'{root}/epoch-{epoch:04d}_real-pred.nii.gz')
+                    # save(synth_image.squeeze(1).movedim(0, -1),
+                    #     f'{root}/epoch-{epoch:04d}_synth-image.nii.gz')
+                    # save(synth0_image.squeeze(1).movedim(0, -1),
+                    #     f'{root}/epoch-{epoch:04d}_synth0-image.nii.gz')
+                    # save(real_image.squeeze(1).movedim(0, -1),
+                    #     f'{root}/epoch-{epoch:04d}_real-image.nii.gz')
+                    # save(synth_ref.squeeze(1).movedim(0, -1).to(torch.uint8),
+                    #     f'{root}/epoch-{epoch:04d}_synth-ref.nii.gz')
+                    # save(real_ref.squeeze(1).movedim(0, -1).to(torch.uint8),
+                    #     f'{root}/epoch-{epoch:04d}_real-ref.nii.gz')
+                    
+                    for i in range(real_ref.squeeze(1).movedim(0, -1).shape[2]):
+                        dice_score = dice_compute(average='micro', ignore_index = 0)
+                        dice_real += dice_score(np.argmax(pred_real[i,].cpu(), axis=0), real_ref[i,:,:].cpu())
+                    
+                    dice_real /= real_ref.squeeze(1).movedim(0, -1).shape[2]
+                    self.log(f'dice_real', dice_real, prog_bar=True)
             else:
                 loss_synth, loss_synth0, loss_real = self.network.synth_and_eval_step(*batch)
             # self.log(f'eval_loss_synth0_{name}', loss_synth0)
@@ -269,17 +330,52 @@ class DiffSynthFull(torch.nn.Module):
     The other (the source) does not have noise.
     """
 
-    def __init__(self, synth):
+    def __init__(self, synth, real_sigma_min=0.15, real_sigma_max=0.15, real_low=0.5, real_middle=0.5, real_high=0.5):
         super().__init__()
         self.synth = synth
+        self.real_sigma_min = real_sigma_min
+        self.real_sigma_max = real_sigma_max
+        self.real_low = real_low
+        self.real_middle = real_middle
+        self.real_high = real_high
 
     def forward(self, slab, _, tlab):
         # slab: labels of the source (synth) domain
         # tlab: label of the target (real) domain
-        sigma = 0.1
+
+        # synthetic real images = noise_free_image * bias filed + noise
+        # Bias field = ((2*2 -> upsampling to 256*256) ** (eps_a * a) * ((4*4 -> upsampling to 256*256) 
+        # ** (eps_b * b)) * ((8*8 -> upsampling to 256*256) ** (eps_c * c))
+        
+        real_sigma = random.uniform(self.real_sigma_min, self.real_sigma_max)
+        low_bound = 0.5
+        up_bound = 2
+
+        bias_field_ori_low = torch.rand([2, 2]) * (up_bound - low_bound) + low_bound
+        bias_field_ori_middle = torch.rand([4, 4]) * (up_bound - low_bound) + low_bound
+        bias_field_ori_high = torch.rand([8, 8]) * (up_bound - low_bound) + low_bound
+
+        # low_eps = sigmoid(self.weight_low))
+        # set low_eps to fix value in real branch: (0,1): 
+        # middle_eps = high_eps = 0; low_eps = 1
+        # bias_field_low ** low_eps
+        # return x * (bias_field_low.squeeze(0) ** low_eps) * \
+        #         (bias_field_middle.squeeze(0) ** middle_eps) * \
+        #         (bias_field_high.squeeze(0) ** high_eps) + torch.randn_like(x) * self.sigma.to(x)
+    
         simg, slab = self.synth(slab)
         timg, tlab = self.synth(tlab)
-        timg += torch.randn_like(timg) * sigma
+
+        bias_field_low = F.interpolate(bias_field_ori_low.unsqueeze(0).unsqueeze(0), \
+                                       size=(timg.shape[1], timg.shape[2]), mode='bilinear', align_corners=False).to(timg)
+        bias_field_middle = F.interpolate(bias_field_ori_middle.unsqueeze(0).unsqueeze(0), \
+                                          size=(timg.shape[1], timg.shape[2]), mode='bilinear', align_corners=False).to(timg)
+        bias_field_high = F.interpolate(bias_field_ori_high.unsqueeze(0).unsqueeze(0), \
+                                        size=(timg.shape[1], timg.shape[2]), mode='bilinear', align_corners=False).to(timg)
+
+        # timg += torch.randn_like(timg) * sigma
+        timg = timg * (bias_field_low.squeeze(0) ** self.real_low) * (bias_field_middle.squeeze(0) ** self.real_middle) \
+            * (bias_field_high.squeeze(0) ** self.real_high) + torch.randn_like(timg) * real_sigma
         return simg, slab, timg, tlab
 
 
@@ -366,7 +462,7 @@ class PairedDataModule(pl.LightningDataModule):
                  test: Union[str, slice, List[int], int, float] = 0.2,
                  preshuffle: bool = True,
                  shared: bool = False,
-                 batch_size: int = 8,
+                 batch_size: int = 64,
                  shuffle: bool = False,
                  num_workers: int = 4,
                  prefetch_factor: int = 2,
