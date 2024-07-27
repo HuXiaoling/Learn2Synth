@@ -335,7 +335,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | 0.2/0.2/0.2   | train_free_02.sh              | Running   |
 | Learn2Synth   | 0.05          | Fixed | 0.2/0.2/0.2   | train_005_02.sh               | Running   |
-| Learn2Synth   | 0.1           | Fixed | 0.2/0.2/0.2   | train_010_02.sh               | Running   |
+| Learn2Synth   | 0.1           | Fixed | 0.2/0.2/0.2   | train_010_02.sh               | Done      |
 | Learn2Synth   | 0.15          | Fixed | 0.2/0.2/0.2   | train_015_02.sh               | Running   |
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.2/0.2/0.2   | train_vary_02.sh              | Running   |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.2/0.2/0.2   | train_vary_vary_02_bias.sh    | Running   |
@@ -355,9 +355,9 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | -0.0205           | 0.4358/0.5567/0.5583  | train_synthseg_free_05_learned.sh         | Running   |
-| SynthSeg  | 0.0503            | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh          | Running   |
+| SynthSeg  | 0.0503            | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh          | Done      |
 | SynthSeg  | 0.0840            | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh          | Re-run    |
-| SynthSeg  | 0.1460            | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh          | Running   |
+| SynthSeg  | 0.1460            | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh          | Done      |
 | SynthSeg  | 0.1342            | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh         | Done      |
 | SynthSeg  | [0.0496, 0.1996]  | 0.3323/0.5632/0.5511  | train_synthseg_vary_vary_05_learned.sh    | Running   |
 
