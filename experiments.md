@@ -18,7 +18,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | 0.15          | 0.1423    | 0.0918    | 0.4917    | 0.7994    | 0.8396    | 0.8332    |
 | vary          | 0.2045    | 0.1505    | 0.6353    | 0.8310    | 0.8336    | 0.8386    |
 
-### Learn2Synth: Different noise levels
+#### Learn2Synth: Different noise levels
 
 | Setting | Preset Sigma | Opmitized Sigma | File | States |
 | :----: | :----: | :----: | :----: | :----: |
@@ -29,7 +29,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | Learn2Synth   | [0.025, 0.2]  | Fixed | train_vary.sh (experiment_15) | Done  |
 | Learn2Synth   | [0.025, 0.2]  | Range | train_vary_vary.sh            | Done  |
 
-### SynthSeg: Different noise levels
+#### SynthSeg: Different noise levels
 
 | Setting | Preset Sigma | File | States |
 | :----: | :----: | :----: | :----: |
@@ -39,7 +39,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | SynthSeg  | 0.15          | train_015_free.sh     | Done  |
 | SynthSeg  | [0.025, 0.2]  | train_vary_free.sh    | Done  |
 
-### SynthSeg: Different noise levels by using the parameters learned by Learn2Synth
+#### SynthSeg: Different noise levels by using the parameters learned by Learn2Synth
 
 | Setting | Preset Sigma | File | States |
 | :----: | :----: | :----: | :----: |
@@ -50,7 +50,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | SynthSeg  | 0.1328            | train_synthseg_vary_learned.sh        | Running   |
 | SynthSeg  | [0.0984, 0.1525]  | train_synthseg_vary_vary_learned.sh   | Running   |
 
-### Learn2Synth: Results for $\sigma = 0$
+#### Learn2Synth: Results for $\sigma = 0$
 
 | Pre-set | sigma = 0 | Dice |
 | :----: | :----: | :----: |
@@ -60,7 +60,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model4        | -0.0014   | 0.897 |
 | **model5**    | -0.0023   | 0.898 |
 
-### Learn2Synth: Results for $\sigma = 0.05$
+#### Learn2Synth: Results for $\sigma = 0.05$
 
 | Pre-set | sigma = 0.05 | Dice |
 | :----: | :----: | :----: |
@@ -70,7 +70,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model4        | 0.0435    | 0.877 |
 | model5        | 0.0440    | 0.879 |
 
-### Learn2Synth: Results for $\sigma = 0.1$
+#### Learn2Synth: Results for $\sigma = 0.1$
 
 | Pre-set | sigma = 0.1 | Dice |
 | :----: | :----: | :----: |
@@ -80,7 +80,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model4        | 0.0971    | 0.859 |
 | model5        | 0.0977    | 0.852 |
 
-### Learn2Synth: Results for $\sigma = 0.15$
+#### Learn2Synth: Results for $\sigma = 0.15$
 
 | Pre-set | sigma = 0.15 | Dice |
 | :----: | :----: | :----: |
@@ -90,7 +90,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | **model4**    | 0.1466    | 0.850 |
 | model5        | 0.1482    | 0.823 |
 
-### Learn2Synth: Results for $\sigma = [0.025, 0.2]$
+#### Learn2Synth: Results for $\sigma = [0.025, 0.2]$
 
 | Pre-set | sigma = [0.025, 0.2] | Dice |
 | :----: | :----: | :----: |
@@ -100,7 +100,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model4        | 0.1318    | 0.830 |
 | model5        | 0.1376    | 0.840 |
 
-### Learn2Synth: Results for $\sigma = [0.025, 0.2]$ (regress ranges of sigma)
+#### Learn2Synth: Results for $\sigma = [0.025, 0.2]$ (regress ranges of sigma)
 
 | Pre-set | sigma = [0.025, 0.2] | Dice |
 | :----: | :----: | :----: |
@@ -110,7 +110,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model4        | [0.0995, 0.1531]  | 0.838 |
 | model5        | [0.0986, 0.1507]  | 0.830 |
 
-### Learn2Synth: Results for fine-scale sigma settings
+#### Learn2Synth: Results for fine-scale sigma settings
 
 | Pre-set sigma | 0.05 | 0.09 | 0.095 | 0.1 | 0.105 | 0.11 | 0.15 | vary |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -136,7 +136,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 ** (eps_b * b)) * ((8 * 8 -> upsampling to 256 * 256) ** (eps_c * c))
 ```
 
-### Learn2Synth: Results for $\sigma = 0.05$, $c_{low} = 1$, $c_{middle} = 0$, $c_{high} = 0$
+#### Learn2Synth: Results for $\sigma = 0.05$, $c_{low} = 1$, $c_{middle} = 0$, $c_{high} = 0$
 
 | Pre-set | sigma = 0.05 | low = 1 | middle = 0 | high = 0 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -146,7 +146,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.0535    | 0.1377    | 0.2022    | 0.5514    | 0.8548    |
 | model5    | 0.0560    | 0.1334    | 0.1994    | 0.5519    | 0.8515    |
 
-### Learn2Synth: Results for $\sigma = 0.1$, $c_{low} = 1$, $c_{middle} = 0$, $c_{high} = 0$
+#### Learn2Synth: Results for $\sigma = 0.1$, $c_{low} = 1$, $c_{middle} = 0$, $c_{high} = 0$
 
 | Pre-set | sigma = 0.10 | low = 1 | middle = 0 | high = 0 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -156,7 +156,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.0961    | 0.1083    | 0.1750    | 0.5321    | 0.8290    |
 | model5    | 0.0981    | 0.0882    | 0.1581    | 0.5201    | 0.8180    |
 
-### Learn2Synth: Results for $\sigma = 0.15$, $c_{low} = 1$, $c_{middle} = 0$, $c_{high} = 0$
+#### Learn2Synth: Results for $\sigma = 0.15$, $c_{low} = 1$, $c_{middle} = 0$, $c_{high} = 0$
 
 | Pre-set | sigma = 0.15 | low = 1 | middle = 0 | high = 0 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -166,7 +166,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.1389    | 0.0992    | 0.1721    | 0.5150    | 0.8276    |
 | model5    | 0.1402    | 0.0923    | 0.1662    | 0.5090    | 0.8254    |
 
-### Check if $\sigma$ always below the pre-set value
+#### Check if $\sigma$ always below the pre-set value
 
 | Model | Sigma | Sigma + 0.2 |
 | :----: | :----: | :----: |
@@ -176,7 +176,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | -0.1046   | 0.0954    |
 | model5    | -0.1043   | 0.0957    |
 
-### Learn2Synth: Results for $\sigma = 0.05$, $c_{low} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.05$, $c_{low} = 0.5$
 
 | Pre-set | sigma = 0.05 | low = 0.5 |
 | :----: | :----: | :----: |
@@ -186,7 +186,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.0480    | 0.4901    |
 | model5    | 0.0489    | 0.4890    |
 
-### Learn2Synth: Results for $\sigma = 0.05$, $c_{middle} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.05$, $c_{middle} = 0.5$
 
 | Pre-set | sigma = 0.05 | middle = 0.5 |
 | :----: | :----: | :----: |
@@ -196,7 +196,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.0482    | 0.5852    |
 | model5    | 0.0480    | 0.5854    |
 
-### Learn2Synth: Results for $\sigma = 0.05$, $c_{high} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.05$, $c_{high} = 0.5$
 
 | Pre-set | sigma = 0.05 | high = 0.5 |
 | :----: | :----: | :----: |
@@ -206,7 +206,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.0511    | 0.5745    |
 | model5    | 0.0503    | 0.5740    |
 
-### Learn2Synth: Results for $\sigma = 0.1$, $c_{low} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.1$, $c_{low} = 0.5$
 
 | Pre-set | sigma = 0.1 | low = 0.5 |
 | :----: | :----: | :----: |
@@ -216,7 +216,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.0984    | 0.5965    |
 | model5    | 0.0985    | 0.5964    |
 
-### Learn2Synth: Results for $\sigma = 0.1$, $c_{middle} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.1$, $c_{middle} = 0.5$
 
 | Pre-set | sigma = 0.1 | middle = 0.5 |
 | :----: | :----: | :----: |
@@ -226,7 +226,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4    | 0.1036    | 0.5762    |
 | model5    | 0.1042    | 0.5761    |
 
-### Learn2Synth: Results for $\sigma = 0.1$, $c_{high} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.1$, $c_{high} = 0.5$
 
 | Pre-set | sigma = 0.1 | high = 0.5 |
 | :----: | :----: | :----: |
@@ -246,7 +246,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | 0.15          | 0.619 | 0.696 | 0.832 | 0.854 | 0.851 |
 | [0.025, 0.2]  | 0.729 | 0.744 | 0.849 | 0.862 | 0.867 |
 
-### Learn2Synth: Results for $\sigma = 0$, $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0$, $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Pre-set | sigma = 0 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -256,7 +256,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4        | -0.0201   | 0.4381    | 0.5566    | 0.5535    | 0.919 |
 | model5        | -0.0045   | 0.5537    | 0.5578    | 0.5694    | 0.918 |
 
-### Learn2Synth: Results for $\sigma = 0.05$, $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.05$, $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Pre-set | sigma = 0.05 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -266,7 +266,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4        | 0.0481    | 0.3150    | 0.4285    | 0.7166    | 0.8933    |
 | model5        | 0.0479    | 0.3148    | 0.4285    | 0.7166    | 0.8916    |
 
-### Learn2Synth: Results for $\sigma = 0.1$, $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.1$, $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Pre-set | sigma = 0.1 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -276,7 +276,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4        | 0.0857    | 0.5870    | 0.7590    | 0.9669    | 0.8525    |
 | **model5**    | 0.0840    | 0.5887    | 0.7618    | 0.9680    | 0.8643    |
 
-### Learn2Synth: Results for $\sigma = 0.15$, $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
+#### Learn2Synth: Results for $\sigma = 0.15$, $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Pre-set | sigma = 0.15 | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -286,7 +286,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4        | 0.1471    | 0.3653    | 0.4470    | 0.6598    | 0.856 |
 | model5        | 0.1451    | 0.3552    | 0.4390    | 0.6612    | 0.854 |
 
-### Learn2Synth: Results for $\sigma = [0.025, 0.2]$ (regress a single sigma), $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
+#### Learn2Synth: Results for $\sigma = [0.025, 0.2]$ (regress a single sigma), $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Pre-set | sigma = [0.025, 0.2] | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -296,7 +296,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4        | 0.1339    | 0.3973    | 0.5059    | 0.7986    | 0.8591    |
 | model5        | 0.1325    | 0.3932    | 0.5024    | 0.7968    | 0.8479    |
 
-### Learn2Synth: Results for $\sigma = [0.025, 0.2]$ (regress ranges of sigma), $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
+#### Learn2Synth: Results for $\sigma = [0.025, 0.2]$ (regress ranges of sigma), $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Pre-set | sigma = [0.025, 0.2] | low = 0.5 | middle = 0.5 | high = 0.5 | Dice |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -307,7 +307,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model5        | [0.0409, 0.1833]  | 0.3076    | 0.5449    | 0.5456    | 0.821 |
 
 
-### Learn2Synth: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
+#### Learn2Synth: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -319,7 +319,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Learn2Synth   | [0.025, 0.2]  | Range | -/-/-         | train_vary_vary.sh            | Done  |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.5/0.5/0.5   | train_vary_vary_05_bias.sh    | Done  |
 
-### SynthSeg: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
+#### SynthSeg: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
@@ -329,7 +329,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | SynthSeg  | 0.15          | 0.5/0.5/0.5   | train_synthseg_015_05.sh  | Running   |
 | SynthSeg  | [0.025, 0.2]  | 0.5/0.5/0.5   | train_synthseg_vary_05.sh | Done      |
 
-### SynthSeg: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$ using learned parameters for Learn2Synth
+#### SynthSeg: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$ using learned parameters from Learn2Synth
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
@@ -340,7 +340,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | SynthSeg  | 0.1342            | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh         | Done      |
 | SynthSeg  | [0.0496, 0.1996]  | 0.3323/0.5632/0.5511  | train_synthseg_vary_vary_05_learned.sh    | Running   |
 
-### Learn2Synth: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
+#### Learn2Synth: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -351,7 +351,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.8/0.8/0.8   | train_vary_08.sh              | Done      |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.8/0.8/0.8   | train_vary_vary_08_bias.sh    | Done      |
 
-### SynthSeg: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
+#### SynthSeg: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
@@ -361,7 +361,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | SynthSeg  | 0.15          | 0.8/0.8/0.8   | train_synthseg_015_08.sh  | To run    |
 | SynthSeg  | [0.025, 0.2]  | 0.8/0.8/0.8   | train_synthseg_vary_08.sh | Running   |
 
-### SynthSeg: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$ using learned parameters for Learn2Synth
+#### SynthSeg: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$ using learned parameters from Learn2Synth
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
@@ -372,7 +372,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | SynthSeg  | 0.            | 0./0./0.  | train_synthseg_vary_08_learned.sh         | To run    |
 | SynthSeg  | [0., 0.]      | 0./0./0.  | train_synthseg_vary_vary_08_learned.sh    | To run    |
 
-### Learn2Synth: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
+#### Learn2Synth: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: | :----: |
@@ -383,7 +383,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.2/0.2/0.2   | train_vary_02.sh              | Done      |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.2/0.2/0.2   | train_vary_vary_02_bias.sh    | Done      |
 
-### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
+#### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
@@ -393,7 +393,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | SynthSeg  | 0.15          | 0.2/0.2/0.2   | train_synthseg_015_02.sh  | To run    |
 | SynthSeg  | [0.025, 0.2]  | 0.2/0.2/0.2   | train_synthseg_vary_02.sh | To run    |
 
-### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$ using learned parameters for Learn2Synth
+#### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$ using learned parameters from Learn2Synth
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
@@ -404,7 +404,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | SynthSeg  | 0.            | 0./0./0.  | train_synthseg_vary_02_learned.sh         | To run    |
 | SynthSeg  | [0., 0.]      | 0./0./0.  | train_synthseg_vary_vary_02_learned.sh    | To run    |
 
-### Learn2Synth: Ablation study for learning rate
+#### Learn2Synth: Ablation study for learning rate
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | LR | States |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
