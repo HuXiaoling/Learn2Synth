@@ -306,6 +306,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4        | [0.0401, 0.1845]  | 0.3145    | 0.5492    | 0.5472    | 0.808 |
 | model5        | [0.0409, 0.1833]  | 0.3076    | 0.5449    | 0.5456    | 0.821 |
 
+
 ### Learn2Synth: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
@@ -317,28 +318,6 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.5/0.5/0.5   | train_vary_05.sh              | Done  |
 | Learn2Synth   | [0.025, 0.2]  | Range | -/-/-         | train_vary_vary.sh            | Done  |
 | Learn2Synth   | [0.025, 0.2]  | Range | 0.5/0.5/0.5   | train_vary_vary_05_bias.sh    | Done  |
-
-### Learn2Synth: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
-
-| Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
-| :----: | :----: | :----: | :----: | :----: | :----: |
-| Learn2Synth   | 0             | Fixed | 0.8/0.8/0.8   | train_free_08.sh              | Running   |
-| Learn2Synth   | 0.05          | Fixed | 0.8/0.8/0.8   | train_005_08.sh               | Running   |
-| Learn2Synth   | 0.1           | Fixed | 0.8/0.8/0.8   | train_010_08.sh               | Running   |
-| Learn2Synth   | 0.15          | Fixed | 0.8/0.8/0.8   | train_015_08.sh               | Done      |
-| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.8/0.8/0.8   | train_vary_08.sh              | Done      |
-| Learn2Synth   | [0.025, 0.2]  | Range | 0.8/0.8/0.8   | train_vary_vary_08_bias.sh    | Done      |
-
-### Learn2Synth: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
-
-| Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
-| :----: | :----: | :----: | :----: | :----: | :----: |
-| Learn2Synth   | 0             | Fixed | 0.2/0.2/0.2   | train_free_02.sh              | Running   |
-| Learn2Synth   | 0.05          | Fixed | 0.2/0.2/0.2   | train_005_02.sh               | Running   |
-| Learn2Synth   | 0.1           | Fixed | 0.2/0.2/0.2   | train_010_02.sh               | Done      |
-| Learn2Synth   | 0.15          | Fixed | 0.2/0.2/0.2   | train_015_02.sh               | Running   |
-| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.2/0.2/0.2   | train_vary_02.sh              | Running   |
-| Learn2Synth   | [0.025, 0.2]  | Range | 0.2/0.2/0.2   | train_vary_vary_02_bias.sh    | Running   |
 
 ### SynthSeg: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$
 
@@ -356,10 +335,74 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | -0.0205           | 0.4358/0.5567/0.5583  | train_synthseg_free_05_learned.sh         | Running   |
 | SynthSeg  | 0.0503            | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh          | Done      |
-| SynthSeg  | 0.0840            | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh          | Re-run    |
+| SynthSeg  | 0.0840            | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh          | Running   |
 | SynthSeg  | 0.1460            | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh          | Done      |
 | SynthSeg  | 0.1342            | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh         | Done      |
 | SynthSeg  | [0.0496, 0.1996]  | 0.3323/0.5632/0.5511  | train_synthseg_vary_vary_05_learned.sh    | Running   |
+
+### Learn2Synth: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
+
+| Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+| Learn2Synth   | 0             | Fixed | 0.8/0.8/0.8   | train_free_08.sh              | Running   |
+| Learn2Synth   | 0.05          | Fixed | 0.8/0.8/0.8   | train_005_08.sh               | Running   |
+| Learn2Synth   | 0.1           | Fixed | 0.8/0.8/0.8   | train_010_08.sh               | Running   |
+| Learn2Synth   | 0.15          | Fixed | 0.8/0.8/0.8   | train_015_08.sh               | Done      |
+| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.8/0.8/0.8   | train_vary_08.sh              | Done      |
+| Learn2Synth   | [0.025, 0.2]  | Range | 0.8/0.8/0.8   | train_vary_vary_08_bias.sh    | Done      |
+
+### SynthSeg: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
+
+| Setting | Preset Sigma | Preset low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | 0             | 0.8/0.8/0.8   | train_synthseg_free_08.sh | Running   |
+| SynthSeg  | 0.05          | 0.8/0.8/0.8   | train_synthseg_005_08.sh  | To run    |
+| SynthSeg  | 0.1           | 0.8/0.8/0.8   | train_synthseg_010_08.sh  | To run    |
+| SynthSeg  | 0.15          | 0.8/0.8/0.8   | train_synthseg_015_08.sh  | To run    |
+| SynthSeg  | [0.025, 0.2]  | 0.8/0.8/0.8   | train_synthseg_vary_08.sh | Running   |
+
+### SynthSeg: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$ using learned parameters for Learn2Synth
+
+| Setting | Preset Sigma | Preset low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_free_08_learned.sh         | To run    |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_005_08_learned.sh          | To run    |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_010_08_learned.sh          | To run    |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_015_08_learned.sh          | To run    |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_vary_08_learned.sh         | To run    |
+| SynthSeg  | [0., 0.]      | 0./0./0.  | train_synthseg_vary_vary_08_learned.sh    | To run    |
+
+### Learn2Synth: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
+
+| Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+| Learn2Synth   | 0             | Fixed | 0.2/0.2/0.2   | train_free_02.sh              | Done      |
+| Learn2Synth   | 0.05          | Fixed | 0.2/0.2/0.2   | train_005_02.sh               | Running   |
+| Learn2Synth   | 0.1           | Fixed | 0.2/0.2/0.2   | train_010_02.sh               | Done      |
+| Learn2Synth   | 0.15          | Fixed | 0.2/0.2/0.2   | train_015_02.sh               | Running   |
+| Learn2Synth   | [0.025, 0.2]  | Fixed | 0.2/0.2/0.2   | train_vary_02.sh              | Done      |
+| Learn2Synth   | [0.025, 0.2]  | Range | 0.2/0.2/0.2   | train_vary_vary_02_bias.sh    | Done      |
+
+### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
+
+| Setting | Preset Sigma | Preset low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | 0             | 0.2/0.2/0.2   | train_synthseg_free_02.sh | Running   |
+| SynthSeg  | 0.05          | 0.2/0.2/0.2   | train_synthseg_005_02.sh  | To run    |
+| SynthSeg  | 0.1           | 0.2/0.2/0.2   | train_synthseg_010_02.sh  | To run    |
+| SynthSeg  | 0.15          | 0.2/0.2/0.2   | train_synthseg_015_02.sh  | To run    |
+| SynthSeg  | [0.025, 0.2]  | 0.2/0.2/0.2   | train_synthseg_vary_02.sh | To run    |
+
+### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$ using learned parameters for Learn2Synth
+
+| Setting | Preset Sigma | Preset low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_free_02_learned.sh         | To run    |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_005_02_learned.sh          | To run    |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_010_02_learned.sh          | To run    |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_015_02_learned.sh          | To run    |
+| SynthSeg  | 0.            | 0./0./0.  | train_synthseg_vary_02_learned.sh         | To run    |
+| SynthSeg  | [0., 0.]      | 0./0./0.  | train_synthseg_vary_vary_02_learned.sh    | To run    |
 
 ### Learn2Synth: Ablation study for learning rate
 
