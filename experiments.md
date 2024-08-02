@@ -48,7 +48,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | SynthSeg  | 0.0993            | train_synthseg_010_learned.sh         | Running   |
 | SynthSeg  | 0.1466            | train_synthseg_015_learned.sh         | Done      |
 | SynthSeg  | 0.1328            | train_synthseg_vary_learned.sh        | Done      |
-| SynthSeg  | [0.0984, 0.1525]  | train_synthseg_vary_vary_learned.sh   | Running   |
+| SynthSeg  | [0.0984, 0.1525]  | train_synthseg_vary_vary_learned.sh   | Done      |
 
 #### Learn2Synth: Results for $\sigma = 0$
 
@@ -381,6 +381,16 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | model4        | 0.1180    | 0.5963/0.5393/0.5932  | 0.814 |
 | model5        | 0.1161    | 0.5964/0.5396/0.5942  | 0.814 |
 
+#### Learn2Synth: Results for $\sigma = 0.15$, $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
+
+| Pre-set | sigma = 0.1 | low = 0.8/middle = 0.8/high = 0.8 | Dice |
+| :----: | :----: | :----: | :----: |
+| model1        | 0.1543    | 0.6299/0.5168/0.5181  | 0.746 |
+| model2        | 0.1578    | 0.6300/0.5169/0.5191  | 0.750 |
+| model3        | 0.1590    | 0.6302/0.5172/0.5196  | 0.749 |
+| **model4**    | 0.1658    | 0.6291/0.5175/0.5238  | 0.753 |
+| model5        | 0.1688    | 0.6286/0.5180/0.5259  | 0.752 |
+
 #### Learn2Synth: Results for $\sigma = [0.025, 0.2]$ (regress ranges of sigma), $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
 
 | Pre-set | sigma = [0.025, 0.2] | low = 0.8/middle = 0.8/high = 0.8 | Dice |
@@ -408,7 +418,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | SynthSeg  | 0.                | 0./0./0.              | train_synthseg_free_08_learned.sh         | Running   |
 | SynthSeg  | 0.                | 0./0./0.              | train_synthseg_005_08_learned.sh          | Running   |
 | SynthSeg  | 0.                | 0./0./0.              | train_synthseg_010_08_learned.sh          | Running   |
-| SynthSeg  | 0.                | 0./0./0.              | train_synthseg_015_08_learned.sh          | To run    |
+| SynthSeg  | 0.                | 0./0./0.              | train_synthseg_015_08_learned.sh          | Running   |
 | SynthSeg  | 0.                | 0./0./0.              | train_synthseg_vary_08_learned.sh         | To run    |
 | SynthSeg  | [0.1170, 0.2411]  | 0.6016/0.5459/0.5344  | train_synthseg_vary_vary_08_learned.sh    | Running   |
 
