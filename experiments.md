@@ -507,11 +507,11 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | 0             | 0.2/0.2/0.2   | train_synthseg_free_02.sh | Running   |
-| SynthSeg  | 0.05          | 0.2/0.2/0.2   | train_synthseg_005_02.sh  | Done      |
-| SynthSeg  | 0.1           | 0.2/0.2/0.2   | train_synthseg_010_02.sh  | Done      |
-| SynthSeg  | 0.15          | 0.2/0.2/0.2   | train_synthseg_015_02.sh  | Done      |
-| SynthSeg  | [0.025, 0.2]  | 0.2/0.2/0.2   | train_synthseg_vary_02.sh | Done      |
+| SynthSeg  | 0             | 0.2/0.2/0.2   | train_synthseg_free_02.sh | Done  |
+| SynthSeg  | 0.05          | 0.2/0.2/0.2   | train_synthseg_005_02.sh  | Done  |
+| SynthSeg  | 0.1           | 0.2/0.2/0.2   | train_synthseg_010_02.sh  | Done  |
+| SynthSeg  | 0.15          | 0.2/0.2/0.2   | train_synthseg_015_02.sh  | Done  |
+| SynthSeg  | [0.025, 0.2]  | 0.2/0.2/0.2   | train_synthseg_vary_02.sh | Done  |
 
 #### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$ using learned parameters from Learn2Synth
 
