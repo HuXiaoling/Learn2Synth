@@ -518,8 +518,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | -0.0013           | 0.2624/0.2866/0.2825  | train_synthseg_free_02_learned.sh         | Running   |
-| SynthSeg  | 0.0486            | 0.3092/0.3407/0.3210  | train_synthseg_005_02_learned.sh          | Running   |
-| SynthSeg  | 0.0927            | 0.3386/0.3781/0.3781  | train_synthseg_010_02_learned.sh          | Running   |
+| SynthSeg  | 0.0486            | 0.3092/0.3407/0.3210  | train_synthseg_005_02_learned.sh          | Done      |
+| SynthSeg  | 0.0927            | 0.3386/0.3781/0.3781  | train_synthseg_010_02_learned.sh          | Done      |
 | SynthSeg  | 0.1496            | 0.3233/0.3657/0.3925  | train_synthseg_015_02_learned.sh          | Running   |
 | SynthSeg  | 0.1238            | 0.3401/0.3826/0.3690  | train_synthseg_vary_02_learned.sh         | Running   |
 | SynthSeg  | [-0.1496, 0.2135] | 0.3382/0.3685/0.5199  | train_synthseg_vary_vary_02_learned.sh    | Running   |
