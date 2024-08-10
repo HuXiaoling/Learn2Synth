@@ -166,7 +166,7 @@ class Model(pl.LightningModule):
             self.log(f'train_loss', loss, prog_bar=True)
         else:        
             self.log(f'train_loss', loss, prog_bar=True)
-            self.log(f'sigma',self.network.synthnet.sigma, prog_bar=True)
+            self.log(f'sigma', self.network.synthnet[1].sigma, prog_bar=True)
         
         return loss
 
