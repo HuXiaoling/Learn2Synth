@@ -521,8 +521,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | SynthSeg  | 0.0486            | 0.3092/0.3407/0.3210  | train_synthseg_005_02_learned.sh          | Done      |
 | SynthSeg  | 0.0927            | 0.3386/0.3781/0.3781  | train_synthseg_010_02_learned.sh          | Done      |
 | SynthSeg  | 0.1496            | 0.3233/0.3657/0.3925  | train_synthseg_015_02_learned.sh          | Running   |
-| SynthSeg  | 0.1238            | 0.3401/0.3826/0.3690  | train_synthseg_vary_02_learned.sh         | Running   |
-| SynthSeg  | [-0.1496, 0.2135] | 0.3382/0.3685/0.5199  | train_synthseg_vary_vary_02_learned.sh    | Running   |
+| SynthSeg  | 0.1238            | 0.3401/0.3826/0.3690  | train_synthseg_vary_02_learned.sh         | Done      |
+| SynthSeg  | [-0.1496, 0.2135] | 0.3382/0.3685/0.5199  | train_synthseg_vary_vary_02_learned.sh    | Done      |
 
 #### Learn2Synth: Ablation study for learning rate
 
@@ -556,13 +556,13 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Learn2Synth   | 0.05          | 0.8/0.8/0.8   | train_non_parametric_005_08.sh    | Running   |
 | Learn2Synth   | 0.1           | 0.8/0.8/0.8   | train_non_parametric_010_08.sh    | Running   |
 | Learn2Synth   | 0.15          | 0.8/0.8/0.8   | train_non_parametric_015_08.sh    | Running   |
-| Learn2Synth   | [0.025, 0.2]  | 0.8/0.8/0.8   | train_non_parametric_vary_08.sh   | To run    |
+| Learn2Synth   | [0.025, 0.2]  | 0.8/0.8/0.8   | train_non_parametric_vary_08.sh   | Running   |
 
 #### Learn2Synth: Non parametric setting for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| Learn2Synth   | 0             | 0.2/0.2/0.2   | train_non_parametric_free_02.sh   | To run    |
+| Learn2Synth   | 0             | 0.2/0.2/0.2   | train_non_parametric_free_02.sh   | Running   |
 | Learn2Synth   | 0.05          | 0.2/0.2/0.2   | train_non_parametric_005_02.sh    | To run    |
 | Learn2Synth   | 0.1           | 0.2/0.2/0.2   | train_non_parametric_010_02.sh    | To run    |
 | Learn2Synth   | 0.15          | 0.2/0.2/0.2   | train_non_parametric_015_02.sh    | To run    |
