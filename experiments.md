@@ -1,4 +1,6 @@
-## Print the parameters
+# Synthetic experiemnts
+
+#### Print the parameters
 ```
 model['state_dict']['network.synthnet.sigma'], torch.sigmoid(model['state_dict']['network.synthnet.weight_low']), 
 torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigmoid(model['state_dict']['network.synthnet.weight_high'])
@@ -567,3 +569,10 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Learn2Synth   | 0.1           | 0.2/0.2/0.2   | train_non_parametric_010_02.sh    | Running   |
 | Learn2Synth   | 0.15          | 0.2/0.2/0.2   | train_non_parametric_015_02.sh    | Running   |
 | Learn2Synth   | [0.025, 0.2]  | 0.2/0.2/0.2   | train_non_parametric_vary_02.sh   | Running   |
+
+# Experiemnts on real dataset --- Buckner40
+
+| Setting | File | States |
+| :----: | :----: | :----: |
+| Learn2Synth   | train_noise_bias_buckner40.sh.sh  | To run    |
+| Learn2Synth   | train_non_parametric_buckner40.sh | To run    |
