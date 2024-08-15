@@ -427,12 +427,12 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Learned Sigma | Learned low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | -0.0005           | 0.6519/0.6326/0.7212  | train_synthseg_free_08_learned.sh         | Done      |
-| SynthSeg  | 0.0630            | 0.6026/0.5534/0.6225  | train_synthseg_005_08_learned.sh          | Done      |
-| SynthSeg  | 0.1184            | 0.5964/0.5385/0.5916  | train_synthseg_010_08_learned.sh          | Done      |
-| SynthSeg  | 0.1658            | 0.6291/0.5175/0.5238  | train_synthseg_015_08_learned.sh          | Running   |
-| SynthSeg  | 0.1615            | 0.6228/0.5254/0.5291  | train_synthseg_vary_08_learned.sh         | Done      |
-| SynthSeg  | [0.1170, 0.2411]  | 0.6016/0.5459/0.5344  | train_synthseg_vary_vary_08_learned.sh    | Done      |
+| SynthSeg  | -0.0005           | 0.6519/0.6326/0.7212  | train_synthseg_free_08_learned.sh         | Done  |
+| SynthSeg  | 0.0630            | 0.6026/0.5534/0.6225  | train_synthseg_005_08_learned.sh          | Done  |
+| SynthSeg  | 0.1184            | 0.5964/0.5385/0.5916  | train_synthseg_010_08_learned.sh          | Done  |
+| SynthSeg  | 0.1658            | 0.6291/0.5175/0.5238  | train_synthseg_015_08_learned.sh          | Done  |
+| SynthSeg  | 0.1615            | 0.6228/0.5254/0.5291  | train_synthseg_vary_08_learned.sh         | Done  |
+| SynthSeg  | [0.1170, 0.2411]  | 0.6016/0.5459/0.5344  | train_synthseg_vary_vary_08_learned.sh    | Done  |
 
 #### Learn2Synth: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
 
@@ -583,5 +583,5 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Learned Sigma | Learned low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | Fixed | 0./0./0.  | train_synthseg_vary_02_learned.sh         | To run |
-| SynthSeg  | Range | ---       | train_synthseg_vary_vary_02_learned.sh    | To run |
+| SynthSeg  | Fixed | 0./0./0.  | .sh   | To run |
+| SynthSeg  | Range | ---       | .sh   | To run |
