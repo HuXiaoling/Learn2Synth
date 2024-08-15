@@ -43,7 +43,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 
 #### SynthSeg: Different noise levels by using the parameters learned by Learn2Synth
 
-| Setting | Preset Sigma | File | States |
+| Setting | Learned Sigma | File | States |
 | :----: | :----: | :----: | :----: |
 | SynthSeg  | -0.0023           | train_synthseg_free_learned.sh        | Done  |
 | SynthSeg  | 0.0402            | train_synthseg_005_learned.sh         | Done  |
@@ -333,7 +333,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 #### SynthSeg: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$ using learned parameters from Learn2Synth
 
-| Setting | Preset Sigma | Preset low/middle/high | File | States |
+| Setting | Learned Sigma | Learned low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | -0.0205           | 0.4358/0.5567/0.5583  | train_synthseg_free_05_learned.sh         | Done  |
 | SynthSeg  | 0.0503            | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh          | Done  |
@@ -425,7 +425,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 #### SynthSeg: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$ using learned parameters from Learn2Synth
 
-| Setting | Preset Sigma | Preset low/middle/high | File | States |
+| Setting | Learned Sigma | Learned low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | -0.0005           | 0.6519/0.6326/0.7212  | train_synthseg_free_08_learned.sh         | Done      |
 | SynthSeg  | 0.0630            | 0.6026/0.5534/0.6225  | train_synthseg_005_08_learned.sh          | Done      |
@@ -517,7 +517,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 #### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$ using learned parameters from Learn2Synth
 
-| Setting | Preset Sigma | Preset low/middle/high | File | States |
+| Setting | Learned Sigma | Learned low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
 | SynthSeg  | -0.0013           | 0.2624/0.2866/0.2825  | train_synthseg_free_02_learned.sh         | Done  |
 | SynthSeg  | 0.0486            | 0.3092/0.3407/0.3210  | train_synthseg_005_02_learned.sh          | Done  |
@@ -572,7 +572,16 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 # Experiemnts on real dataset --- Buckner40
 
-| Setting | File | States |
-| :----: | :----: | :----: |
-| Learn2Synth   | train_noise_bias_buckner40.sh.sh  | To run    |
-| Learn2Synth   | train_non_parametric_buckner40.sh | To run    |
+| Setting | Opmitized Sigma | File | States |
+| :----: | :----: | :----: | :----: |
+| Learn2Synth   | Fixed | train_noise_bias_buckner40.sh.sh  | To run    |
+| Learn2Synth   | Range | train_noise_bias_buckner40.sh.sh  | To run    |
+| Learn2Synth   | Fixed | train_non_parametric_buckner40.sh | To run    |
+| Learn2Synth   | Range | train_non_parametric_buckner40.sh | To run    |
+
+#### SynthSeg: using learned parameters from Learn2Synth
+
+| Setting | Learned Sigma | Learned low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | Fixed | 0./0./0.  | train_synthseg_vary_02_learned.sh         | To run |
+| SynthSeg  | Range | ---       | train_synthseg_vary_vary_02_learned.sh    | To run |
