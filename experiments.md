@@ -325,11 +325,11 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | 0             | 0.5/0.5/0.5   | train_synthseg_free_05.sh | Done      |
-| SynthSeg  | 0.05          | 0.5/0.5/0.5   | train_synthseg_005_05.sh  | Done      |
-| SynthSeg  | 0.1           | 0.5/0.5/0.5   | train_synthseg_010_05.sh  | Done      |
-| SynthSeg  | 0.15          | 0.5/0.5/0.5   | train_synthseg_015_05.sh  | Done      |
-| SynthSeg  | [0.025, 0.2]  | 0.5/0.5/0.5   | train_synthseg_vary_05.sh | Running   |
+| SynthSeg  | 0             | 0.5/0.5/0.5   | train_synthseg_free_05.sh | Done  |
+| SynthSeg  | 0.05          | 0.5/0.5/0.5   | train_synthseg_005_05.sh  | Done  |
+| SynthSeg  | 0.1           | 0.5/0.5/0.5   | train_synthseg_010_05.sh  | Done  |
+| SynthSeg  | 0.15          | 0.5/0.5/0.5   | train_synthseg_015_05.sh  | Done  |
+| SynthSeg  | [0.025, 0.2]  | 0.5/0.5/0.5   | train_synthseg_vary_05.sh | Done  |
 
 #### SynthSeg: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$ using learned parameters from Learn2Synth
 
@@ -544,40 +544,115 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| Learn2Synth   | 0             | 0.5/0.5/0.5   | train_non_parametric_free_05.sh   | Running   |
-| Learn2Synth   | 0.05          | 0.5/0.5/0.5   | train_non_parametric_005_05.sh    | Running   |
-| Learn2Synth   | 0.1           | 0.5/0.5/0.5   | train_non_parametric_010_05.sh    | Running   |
-| Learn2Synth   | 0.15          | 0.5/0.5/0.5   | train_non_parametric_015_05.sh    | Running   |
-| Learn2Synth   | [0.025, 0.2]  | 0.5/0.5/0.5   | train_non_parametric_vary_05.sh   | Running   |
+| Learn2Synth   | 0             | 0.5/0.5/0.5   | train_non_parametric_free_05.sh   | To-check  |
+| Learn2Synth   | 0.05          | 0.5/0.5/0.5   | train_non_parametric_005_05.sh    | To-check  |
+| Learn2Synth   | 0.1           | 0.5/0.5/0.5   | train_non_parametric_010_05.sh    | To-check  |
+| Learn2Synth   | 0.15          | 0.5/0.5/0.5   | train_non_parametric_015_05.sh    | To-check  |
+| Learn2Synth   | [0.025, 0.2]  | 0.5/0.5/0.5   | train_non_parametric_vary_05.sh   | To-check  |
 
 #### Learn2Synth: Non parametric setting for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| Learn2Synth   | 0             | 0.8/0.8/0.8   | train_non_parametric_free_08.sh   | Running   |
-| Learn2Synth   | 0.05          | 0.8/0.8/0.8   | train_non_parametric_005_08.sh    | Running   |
-| Learn2Synth   | 0.1           | 0.8/0.8/0.8   | train_non_parametric_010_08.sh    | Running   |
-| Learn2Synth   | 0.15          | 0.8/0.8/0.8   | train_non_parametric_015_08.sh    | Running   |
-| Learn2Synth   | [0.025, 0.2]  | 0.8/0.8/0.8   | train_non_parametric_vary_08.sh   | Running   |
+| Learn2Synth   | 0             | 0.8/0.8/0.8   | train_non_parametric_free_08.sh   | To-check  |
+| Learn2Synth   | 0.05          | 0.8/0.8/0.8   | train_non_parametric_005_08.sh    | To-check  |
+| Learn2Synth   | 0.1           | 0.8/0.8/0.8   | train_non_parametric_010_08.sh    | To-check  |
+| Learn2Synth   | 0.15          | 0.8/0.8/0.8   | train_non_parametric_015_08.sh    | To-check  |
+| Learn2Synth   | [0.025, 0.2]  | 0.8/0.8/0.8   | train_non_parametric_vary_08.sh   | To-check  |
 
 #### Learn2Synth: Non parametric setting for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| Learn2Synth   | 0             | 0.2/0.2/0.2   | train_non_parametric_free_02.sh   | Running   |
-| Learn2Synth   | 0.05          | 0.2/0.2/0.2   | train_non_parametric_005_02.sh    | Running   |
-| Learn2Synth   | 0.1           | 0.2/0.2/0.2   | train_non_parametric_010_02.sh    | Running   |
-| Learn2Synth   | 0.15          | 0.2/0.2/0.2   | train_non_parametric_015_02.sh    | Running   |
-| Learn2Synth   | [0.025, 0.2]  | 0.2/0.2/0.2   | train_non_parametric_vary_02.sh   | Running   |
+| Learn2Synth   | 0             | 0.2/0.2/0.2   | train_non_parametric_free_02.sh   | To-check  |
+| Learn2Synth   | 0.05          | 0.2/0.2/0.2   | train_non_parametric_005_02.sh    | To-check  |
+| Learn2Synth   | 0.1           | 0.2/0.2/0.2   | train_non_parametric_010_02.sh    | To-check  |
+| Learn2Synth   | 0.15          | 0.2/0.2/0.2   | train_non_parametric_015_02.sh    | To-check  |
+| Learn2Synth   | [0.025, 0.2]  | 0.2/0.2/0.2   | train_non_parametric_vary_02.sh   | To-check  |
 
-# Experiemnts on real dataset --- Buckner40
+# Experiemnts on real dataset 
+
+## Statistics information of datasets
+
+| Dataset | # of subjects |
+| :----: | :----: |
+| ABIDE         | 1087  |
+| ADHD          | 960   |
+| ADNI3         | 330   |
+| AIBL          | 669   |
+| Buckner40     | 39    |
+| Chinese-HCP   | 215   |
+| COBRE         | 191   |
+| HCP           | 897   |
+| ISBI2015      | 21    |
+| MCIC          | 200   |
+| OASIS3        | 1235  |
+| PPMI          | 1156  |
+
+## Experiemtns on ABIDE
+
+### Learn2Synth results
 
 | Setting | Opmitized Sigma | File | States |
 | :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_noise_bias_buckner40.sh.sh  | To run    |
-| Learn2Synth   | Range | train_noise_bias_buckner40.sh.sh  | To run    |
-| Learn2Synth   | Fixed | train_non_parametric_buckner40.sh | To run    |
-| Learn2Synth   | Range | train_non_parametric_buckner40.sh | To run    |
+| Learn2Synth   | Fixed | train_ABIDE.sh                        | Running   |
+| Learn2Synth   | Range | train_ABIDE_vary.sh                   | Running   |
+| Learn2Synth   | Fixed | train_non_parametric_ABIDE.sh         | To run    |
+| Learn2Synth   | Range | train_non_parametric_ABIDE_vary.sh    | To run    |
+
+#### SynthSeg: using learned parameters from Learn2Synth
+
+| Setting | Learned Sigma | Learned low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | Fixed | 0./0./0.  | .sh   | To run |
+| SynthSeg  | Range | ---       | .sh   | To run |
+
+## Experiemtns on ADHD
+
+### Learn2Synth results
+
+| Setting | Opmitized Sigma | File | States |
+| :----: | :----: | :----: | :----: |
+| Learn2Synth   | Fixed | train_ADHD.sh                     | Running   |
+| Learn2Synth   | Range | train_ADHD_vary.sh                | Running   |
+| Learn2Synth   | Fixed | train_non_parametric_ADHD.sh      | To run    |
+| Learn2Synth   | Range | train_non_parametric_ADHD_vary.sh | To run    |
+
+#### SynthSeg: using learned parameters from Learn2Synth
+
+| Setting | Learned Sigma | Learned low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | Fixed | 0./0./0.  | .sh   | To run |
+| SynthSeg  | Range | ---       | .sh   | To run |
+
+## Experiemtns on OASIS3
+
+### Learn2Synth results
+
+| Setting | Opmitized Sigma | File | States |
+| :----: | :----: | :----: | :----: |
+| Learn2Synth   | Fixed | train_OASIS3.sh.sh                    | Running    |
+| Learn2Synth   | Range | train_OASIS3_vary.sh                  | Running    |
+| Learn2Synth   | Fixed | train_non_parametric_OASIS3.sh        | To run     |
+| Learn2Synth   | Range | train_non_parametric_OASIS3_vary.sh   | To run     |
+
+#### SynthSeg: using learned parameters from Learn2Synth
+
+| Setting | Learned Sigma | Learned low/middle/high | File | States |
+| :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | Fixed | 0./0./0.  | .sh   | To run |
+| SynthSeg  | Range | ---       | .sh   | To run |
+
+## Experiemtns on PPMI
+
+### Learn2Synth results
+
+| Setting | Opmitized Sigma | File | States |
+| :----: | :----: | :----: | :----: |
+| Learn2Synth   | Fixed | train_PPMI.sh.sh                  | Running    |
+| Learn2Synth   | Range | train_PPMI_vary.sh                | Running    |
+| Learn2Synth   | Fixed | train_non_parametric_PPMI.sh      | To run     |
+| Learn2Synth   | Range | train_non_parametric_PPMI_vary.sh | To run     |
 
 #### SynthSeg: using learned parameters from Learn2Synth
 
