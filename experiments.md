@@ -564,8 +564,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Preset Sigma | Preset low/middle/high | File | States |
 | :----: | :----: | :----: | :----: | :----: |
-| Learn2Synth   | 0             | 0.2/0.2/0.2   | train_non_parametric_free_02.sh/train_non_parametric_free_02_resume_drop.sh   | To run    |
-| Learn2Synth   | 0.05          | 0.2/0.2/0.2   | train_non_parametric_005_02.sh/train_non_parametric_005_02_resume_drop.sh     | To run    |
+| Learn2Synth   | 0             | 0.2/0.2/0.2   | train_non_parametric_free_02.sh/train_non_parametric_free_02_resume_drop.sh   | Running   |
+| Learn2Synth   | 0.05          | 0.2/0.2/0.2   | train_non_parametric_005_02.sh/train_non_parametric_005_02_resume_drop.sh     | Running   |
 | Learn2Synth   | 0.1           | 0.2/0.2/0.2   | train_non_parametric_010_02.sh                                                | Done      |
 | Learn2Synth   | 0.15          | 0.2/0.2/0.2   | train_non_parametric_015_02.sh                                                | Done      |
 | Learn2Synth   | [0.025, 0.2]  | 0.2/0.2/0.2   | train_non_parametric_vary_02.sh                                               | Done      |
@@ -615,8 +615,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | :----: | :----: | :----: | :----: |
 | Learn2Synth   | Fixed | train_ADHD.sh                     | Running   |
 | Learn2Synth   | Range | train_ADHD_vary.sh                | Running   |
-| Learn2Synth   | Fixed | train_non_parametric_ADHD.sh      | To run    |
-| Learn2Synth   | Range | train_non_parametric_ADHD_vary.sh | To run    |
+| Learn2Synth   | Fixed | train_ADHD_non_parametric.sh      | Running   |
+| Learn2Synth   | Range | train_ADHD_non_parametric_vary.sh | Running   |
 
 #### SynthSeg: using learned parameters from Learn2Synth
 
