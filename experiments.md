@@ -546,9 +546,9 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | 0.5/0.5/0.5   | train_non_parametric_free_05.sh                                               | Done      |
 | Learn2Synth   | 0.05          | 0.5/0.5/0.5   | train_non_parametric_005_05.sh                                                | Done      |
-| Learn2Synth   | 0.1           | 0.5/0.5/0.5   | train_non_parametric_010_05.sh/train_non_parametric_010_05_resume_drop.sh     | Running   |
+| Learn2Synth   | 0.1           | 0.5/0.5/0.5   | train_non_parametric_010_05.sh/train_non_parametric_010_05_resume_drop.sh     | Done      |
 | Learn2Synth   | 0.15          | 0.5/0.5/0.5   | train_non_parametric_015_05.sh/train_non_parametric_015_05_resume_drop.sh     | Running   |
-| Learn2Synth   | [0.025, 0.2]  | 0.5/0.5/0.5   | train_non_parametric_vary_05.sh/train_non_parametric_vary_05_resume_drop.sh   | Running   |
+| Learn2Synth   | [0.025, 0.2]  | 0.5/0.5/0.5   | train_non_parametric_vary_05.sh/train_non_parametric_vary_05_resume_drop.sh   | Done      |
 
 #### Learn2Synth: Non parametric setting for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
 
@@ -556,9 +556,9 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | 0.8/0.8/0.8   | train_non_parametric_free_08.sh                                               | Done      |
 | Learn2Synth   | 0.05          | 0.8/0.8/0.8   | train_non_parametric_005_08.sh/train_non_parametric_005_08_resume_drop.sh     | Running   |
-| Learn2Synth   | 0.1           | 0.8/0.8/0.8   | train_non_parametric_010_08.sh/train_non_parametric_010_08_resume_drop.sh     | To run    |
+| Learn2Synth   | 0.1           | 0.8/0.8/0.8   | train_non_parametric_010_08.sh/train_non_parametric_010_08_resume_drop.sh     | Running   |
 | Learn2Synth   | 0.15          | 0.8/0.8/0.8   | train_non_parametric_015_08.sh                                                | Done      |
-| Learn2Synth   | [0.025, 0.2]  | 0.8/0.8/0.8   | train_non_parametric_vary_08.sh/train_non_parametric_vary_08_resume_drop.sh   | To run    |
+| Learn2Synth   | [0.025, 0.2]  | 0.8/0.8/0.8   | train_non_parametric_vary_08.sh/train_non_parametric_vary_08_resume_drop.sh   | Running   |
 
 #### Learn2Synth: Non parametric setting for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
 
@@ -613,8 +613,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Opmitized Sigma | File | States |
 | :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_ADHD.sh                     | To run    |
-| Learn2Synth   | Range | train_ADHD_vary.sh                | To run    |
+| Learn2Synth   | Fixed | train_ADHD.sh                     | Running   |
+| Learn2Synth   | Range | train_ADHD_vary.sh                | Running   |
 | Learn2Synth   | Fixed | train_non_parametric_ADHD.sh      | To run    |
 | Learn2Synth   | Range | train_non_parametric_ADHD_vary.sh | To run    |
 
@@ -631,8 +631,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Opmitized Sigma | File | States |
 | :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_OASIS3.sh.sh                    | To run    |
-| Learn2Synth   | Range | train_OASIS3_vary.sh                  | To run    |
+| Learn2Synth   | Fixed | train_OASIS3.sh.sh                    | Running   |
+| Learn2Synth   | Range | train_OASIS3_vary.sh                  | Running   |
 | Learn2Synth   | Fixed | train_non_parametric_OASIS3.sh        | To run    |
 | Learn2Synth   | Range | train_non_parametric_OASIS3_vary.sh   | To run    |
 
@@ -649,8 +649,8 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Opmitized Sigma | File | States |
 | :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_PPMI.sh.sh                  | To run    |
-| Learn2Synth   | Range | train_PPMI_vary.sh                | To run    |
+| Learn2Synth   | Fixed | train_PPMI.sh.sh                  | Running   |
+| Learn2Synth   | Range | train_PPMI_vary.sh                | Running   |
 | Learn2Synth   | Fixed | train_non_parametric_PPMI.sh      | To run    |
 | Learn2Synth   | Range | train_non_parametric_PPMI_vary.sh | To run    |
 
