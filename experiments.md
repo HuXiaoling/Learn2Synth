@@ -598,16 +598,16 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Opmitized Sigma | File | States |
 | :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_ABIDE.sh                        | Running   |
-| Learn2Synth   | Range | train_ABIDE_vary.sh                   | Running   |
-| Learn2Synth   | Fixed | train_ABIDE_non_parametric.sh         | Running   |
-| Learn2Synth   | Range | train_ABIDE_non_parametric_vary.sh    | Running   |
+| Learn2Synth   | Fixed | train_ABIDE.sh                        | Cease |
+| Learn2Synth   | Range | train_ABIDE_vary.sh                   | Cease |
+| Learn2Synth   | Fixed | train_ABIDE_non_parametric.sh         | Cease |
+| Learn2Synth   | Range | train_ABIDE_non_parametric_vary.sh    | Cease |
 
-#### SynthSeg
+#### SynthSeg results
 
 | Setting | File | States |
 | :----: | :----: | :----: |
-| SynthSeg  | train_synthseg_ABIDE.sh   | Running   |
+| SynthSeg  | train_synthseg_ABIDE.sh   | Cease |
 
 ## Experiemtns on ADHD
 
@@ -615,16 +615,16 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 | Setting | Opmitized Sigma | File | States |
 | :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_ADHD.sh                     | Running   |
-| Learn2Synth   | Range | train_ADHD_vary.sh                | Running   |
-| Learn2Synth   | Fixed | train_ADHD_non_parametric.sh      | Running   |
-| Learn2Synth   | Range | train_ADHD_non_parametric_vary.sh | Running   |
+| Learn2Synth   | Fixed | train_ADHD.sh                     | Cease |
+| Learn2Synth   | Range | train_ADHD_vary.sh                | Cease |
+| Learn2Synth   | Fixed | train_ADHD_non_parametric.sh      | Cease |
+| Learn2Synth   | Range | train_ADHD_non_parametric_vary.sh | Cease |
 
-#### SynthSeg
+#### SynthSeg results
 
 | Setting | File | States |
 | :----: | :----: | :----: |
-| SynthSeg  | train_synthseg_ADHD.sh    | Running   |
+| SynthSeg  | train_synthseg_ADHD.sh    | Cease |
 
 ## Experiemtns on OASIS3
 
@@ -659,3 +659,35 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Setting | File | States |
 | :----: | :----: | :----: |
 | SynthSeg  | .sh   | To run |
+
+# Experiemnts on real dataset with compressed labels
+
+### Learn2Synth results with compressed labels
+
+| Setting | Opmitized Sigma | File | States |
+| :----: | :----: | :----: | :----: |
+| Learn2Synth   | Fixed | train_ABIDE.sh                        | Running   |
+| Learn2Synth   | Range | train_ABIDE_vary.sh                   | Running   |
+| Learn2Synth   | Fixed | train_ABIDE_non_parametric.sh         | Running   |
+| Learn2Synth   | Range | train_ABIDE_non_parametric_vary.sh    | Running   |
+
+#### SynthSeg results with compressed labels
+
+| Setting | File | States |
+| :----: | :----: | :----: |
+| SynthSeg  | train_synthseg_ABIDE.sh   | Running   |
+
+### Learn2Synth results with compressed labels
+
+| Setting | Opmitized Sigma | File | States |
+| :----: | :----: | :----: | :----: |
+| Learn2Synth   | Fixed | train_ADHD.sh                     | Running   |
+| Learn2Synth   | Range | train_ADHD_vary.sh                | Running   |
+| Learn2Synth   | Fixed | train_ADHD_non_parametric.sh      | Running   |
+| Learn2Synth   | Range | train_ADHD_non_parametric_vary.sh | Running   |
+
+#### SynthSeg results with compressed labels
+
+| Setting | File | States |
+| :----: | :----: | :----: |
+| SynthSeg  | train_synthseg_ADHD.sh    | Running   |
