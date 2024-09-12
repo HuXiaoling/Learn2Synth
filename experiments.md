@@ -344,13 +344,13 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 #### SynthSeg: All settings for $c_{low} = 0.5$, $c_{middle} = 0.5$, $c_{high} = 0.5$ using learned parameters from Learn2Synth
 
-| Setting | Learned Sigma | Learned low/middle/high | File | States |
-| :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | -0.0205           | 0.4358/0.5567/0.5583  | train_synthseg_free_05_learned.sh         | Done  |
-| SynthSeg  | 0.0503            | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh          | Done  |
-| SynthSeg  | 0.0840            | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh          | Done  |
-| SynthSeg  | 0.1460            | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh          | Done  |
-| SynthSeg  | 0.1342            | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh         | Done  |
+| Setting | Learned Sigma | Learned low/middle/high | File | States |  Compared with fixed |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | -0.0205           | 0.4358/0.5567/0.5583  | train_synthseg_free_05_learned.sh         | Done  | Comparable    |
+| SynthSeg  | 0.0503            | 0.3198/0.4310/0.7159  | train_synthseg_005_05_learned.sh          | Done  | Better        |
+| SynthSeg  | 0.0840            | 0.5887/0.7618/0.9680  | train_synthseg_010_05_learned.sh          | Done  | Better        |
+| SynthSeg  | 0.1460            | 0.3873/0.4611/0.6498  | train_synthseg_015_05_learned.sh          | Done  | Better        |
+| SynthSeg  | 0.1342            | 0.4064/0.5121/0.7991  | train_synthseg_vary_05_learned.sh         | Done  | Better        |
 | SynthSeg  | [0.0496, 0.1996]  | 0.3323/0.5632/0.5511  | train_synthseg_vary_vary_05_learned.sh    | Done  |
 
 #### Learn2Synth: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
@@ -436,13 +436,13 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 #### SynthSeg: All settings for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$ using learned parameters from Learn2Synth
 
-| Setting | Learned Sigma | Learned low/middle/high | File | States |
-| :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | -0.0005           | 0.6519/0.6326/0.7212  | train_synthseg_free_08_learned.sh         | Done  |
-| SynthSeg  | 0.0630            | 0.6026/0.5534/0.6225  | train_synthseg_005_08_learned.sh          | Done  |
-| SynthSeg  | 0.1184            | 0.5964/0.5385/0.5916  | train_synthseg_010_08_learned.sh          | Done  |
-| SynthSeg  | 0.1658            | 0.6291/0.5175/0.5238  | train_synthseg_015_08_learned.sh          | Done  |
-| SynthSeg  | 0.1615            | 0.6228/0.5254/0.5291  | train_synthseg_vary_08_learned.sh         | Done  |
+| Setting | Learned Sigma | Learned low/middle/high | File | States | Compared with fixed |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+| SynthSeg  | -0.0005           | 0.6519/0.6326/0.7212  | train_synthseg_free_08_learned.sh         | Done  | Comparable    |
+| SynthSeg  | 0.0630            | 0.6026/0.5534/0.6225  | train_synthseg_005_08_learned.sh          | Done  | Comparable    |
+| SynthSeg  | 0.1184            | 0.5964/0.5385/0.5916  | train_synthseg_010_08_learned.sh          | Done  | Comparable    |
+| SynthSeg  | 0.1658            | 0.6291/0.5175/0.5238  | train_synthseg_015_08_learned.sh          | Done  | Comparable    |
+| SynthSeg  | 0.1615            | 0.6228/0.5254/0.5291  | train_synthseg_vary_08_learned.sh         | Done  | Worse         |
 | SynthSeg  | [0.1170, 0.2411]  | 0.6016/0.5459/0.5344  | train_synthseg_vary_vary_08_learned.sh    | Done  |
 
 #### Learn2Synth: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
@@ -528,13 +528,13 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 
 #### SynthSeg: All settings for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$ using learned parameters from Learn2Synth
 
-| Setting | Learned Sigma | Learned low/middle/high | File | States |
-| :----: | :----: | :----: | :----: | :----: |
-| SynthSeg  | -0.0013           | 0.2624/0.2866/0.2825  | train_synthseg_free_02_learned.sh         | Done  |
-| SynthSeg  | 0.0486            | 0.3092/0.3407/0.3210  | train_synthseg_005_02_learned.sh          | Done  |
-| SynthSeg  | 0.0927            | 0.3386/0.3781/0.3781  | train_synthseg_010_02_learned.sh          | Done  |
-| SynthSeg  | 0.1496            | 0.3233/0.3657/0.3925  | train_synthseg_015_02_learned.sh          | Done  |
-| SynthSeg  | 0.1238            | 0.3401/0.3826/0.3690  | train_synthseg_vary_02_learned.sh         | Done  |
+| Setting | Learned Sigma | Learned low/middle/high | File | States |  Compared with fixed |
+| :----: | :----: | :----: | :----: | :----: | :----: | 
+| SynthSeg  | -0.0013           | 0.2624/0.2866/0.2825  | train_synthseg_free_02_learned.sh         | Done  | Better        |
+| SynthSeg  | 0.0486            | 0.3092/0.3407/0.3210  | train_synthseg_005_02_learned.sh          | Done  | Comparable    |
+| SynthSeg  | 0.0927            | 0.3386/0.3781/0.3781  | train_synthseg_010_02_learned.sh          | Done  | Better        |
+| SynthSeg  | 0.1496            | 0.3233/0.3657/0.3925  | train_synthseg_015_02_learned.sh          | Done  | Better        |
+| SynthSeg  | 0.1238            | 0.3401/0.3826/0.3690  | train_synthseg_vary_02_learned.sh         | Done  | Better        |
 | SynthSeg  | [-0.1496, 0.2135] | 0.3382/0.3685/0.5199  | train_synthseg_vary_vary_02_learned.sh    | Done  |
 
 #### Learn2Synth: Ablation study for learning rate
