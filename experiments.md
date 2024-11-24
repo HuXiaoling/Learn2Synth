@@ -61,7 +61,6 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 | model3        | -0.0008   | 0.897 |
 | model4        | -0.0014   | 0.897 |
 | **model5**    | -0.0023   | 0.898 |
-|
 
 #### Learn2Synth: Results for $\sigma = 0.05$
 
