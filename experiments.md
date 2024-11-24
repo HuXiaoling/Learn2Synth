@@ -136,7 +136,7 @@ torch.sigmoid(model['state_dict']['network.synthnet.weight_middle']), torch.sigm
 ```
 synthetic real images = noise_free_image * bias filed + noise
 
-Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> upsampling to 256 * 256) 
+Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a)) * ((4 * 4 -> upsampling to 256 * 256) 
 ** (eps_b * b)) * ((8 * 8 -> upsampling to 256 * 256) ** (eps_c * c))
 ```
 
@@ -557,21 +557,21 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | 0.5/0.5/0.5   | train_non_parametric_free_05.sh                                               | Done      | Comparable    |
 | Learn2Synth   | 0.05          | Fixed | 0.5/0.5/0.5   | train_non_parametric_005_05.sh                                                | Done      | Comparable    |
-| Learn2Synth   | 0.1           | Fixed | 0.5/0.5/0.5   | train_non_parametric_010_05.sh/train_non_parametric_010_05_resume_drop.sh     | Done      | Worse         |
+| Learn2Synth   | 0.1           | Fixed | 0.5/0.5/0.5   | train_non_parametric_010_05.sh/train_non_parametric_010_05_resume_drop.sh     | Running   | Worse         |
 | Learn2Synth   | 0.15          | Fixed | 0.5/0.5/0.5   | train_non_parametric_015_05.sh/train_non_parametric_015_05_resume_drop.sh     | Done      | Comparable    |
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.5/0.5/0.5   | train_non_parametric_vary_05.sh/train_non_parametric_vary_05_resume_drop.sh   | Done      | Comparable    |
-| Learn2Synth   | [0.025, 0.2]  | Range | 0.5/0.5/0.5   | train_non_parametric_vary_vary_05_resume_drop.sh                              | Running   |               |
+| Learn2Synth   | [0.025, 0.2]  | Range | 0.5/0.5/0.5   | train_non_parametric_vary_vary_05_resume_drop.sh                              | To re-run |               |
 
 #### Learn2Synth: Non parametric setting for $c_{low} = 0.8$, $c_{middle} = 0.8$, $c_{high} = 0.8$
 
 | Setting | Preset Sigma | Opmitized Sigma | Preset low/middle/high | File | States | Compare with parametric model |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
 | Learn2Synth   | 0             | Fixed | 0.8/0.8/0.8   | train_non_parametric_free_08.sh                                               | Done      | Comparable    |
-| Learn2Synth   | 0.05          | Fixed | 0.8/0.8/0.8   | train_non_parametric_005_08.sh/train_non_parametric_005_08_resume_drop.sh     | To rerun  | Worse         |
-| Learn2Synth   | 0.1           | Fixed | 0.8/0.8/0.8   | train_non_parametric_010_08.sh/train_non_parametric_010_08_resume_drop.sh     | To rerun  | Worse         |
+| Learn2Synth   | 0.05          | Fixed | 0.8/0.8/0.8   | train_non_parametric_005_08.sh/train_non_parametric_005_08_resume_drop.sh     | Running   | Worse         |
+| Learn2Synth   | 0.1           | Fixed | 0.8/0.8/0.8   | train_non_parametric_010_08.sh/train_non_parametric_010_08_resume_drop.sh     | Running   | Worse         |
 | Learn2Synth   | 0.15          | Fixed | 0.8/0.8/0.8   | train_non_parametric_015_08.sh                                                | Done      | Better        |
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.8/0.8/0.8   | train_non_parametric_vary_08.sh/train_non_parametric_vary_08_resume_drop.sh   | Done      | Better        |
-| Learn2Synth   | [0.025, 0.2]  | Range | 0.8/0.8/0.8   | train_non_parametric_vary_vary_08_resume_drop.sh                              | Running   |               |
+| Learn2Synth   | [0.025, 0.2]  | Range | 0.8/0.8/0.8   | train_non_parametric_vary_vary_08_resume_drop.sh                              | To rerun  |               |
 
 #### Learn2Synth: Non parametric setting for $c_{low} = 0.2$, $c_{middle} = 0.2$, $c_{high} = 0.2$
 
@@ -582,7 +582,7 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Learn2Synth   | 0.1           | Fixed | 0.2/0.2/0.2   | train_non_parametric_010_02.sh                                                | Done      | Better        |
 | Learn2Synth   | 0.15          | Fixed | 0.2/0.2/0.2   | train_non_parametric_015_02.sh                                                | Done      | Better        |
 | Learn2Synth   | [0.025, 0.2]  | Fixed | 0.2/0.2/0.2   | train_non_parametric_vary_02.sh                                               | Done      | Better        |
-| Learn2Synth   | [0.025, 0.2]  | Range | 0.2/0.2/0.2   | train_non_parametric_vary_vary_02_resume_drop.sh                              | Running   |               |
+| Learn2Synth   | [0.025, 0.2]  | Range | 0.2/0.2/0.2   | train_non_parametric_vary_vary_02_resume_drop.sh                              | To rerun  |               |
 
 # Experiemnts on real dataset 
 
@@ -602,74 +602,6 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | MCIC          | 200   |
 | OASIS3        | 1235  |
 | PPMI          | 1156  |
-
-## Experiemtns on ABIDE
-
-### Learn2Synth results
-
-| Setting | Opmitized Sigma | File | States |
-| :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_ABIDE.sh                        | Cease |
-| Learn2Synth   | Range | train_ABIDE_vary.sh                   | Cease |
-| Learn2Synth   | Fixed | train_ABIDE_non_parametric.sh         | Cease |
-| Learn2Synth   | Range | train_ABIDE_non_parametric_vary.sh    | Cease |
-
-#### SynthSeg results
-
-| Setting | File | States |
-| :----: | :----: | :----: |
-| SynthSeg  | train_synthseg_ABIDE.sh   | Cease |
-
-## Experiemtns on ADHD
-
-### Learn2Synth results
-
-| Setting | Opmitized Sigma | File | States |
-| :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_ADHD.sh                     | Cease |
-| Learn2Synth   | Range | train_ADHD_vary.sh                | Cease |
-| Learn2Synth   | Fixed | train_ADHD_non_parametric.sh      | Cease |
-| Learn2Synth   | Range | train_ADHD_non_parametric_vary.sh | Cease |
-
-#### SynthSeg results
-
-| Setting | File | States |
-| :----: | :----: | :----: |
-| SynthSeg  | train_synthseg_ADHD.sh    | Cease |
-
-## Experiemtns on OASIS3
-
-### Learn2Synth results
-
-| Setting | Opmitized Sigma | File | States |
-| :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_OASIS3.sh.sh                    | Cease     |
-| Learn2Synth   | Range | train_OASIS3_vary.sh                  | Cease     |
-| Learn2Synth   | Fixed | train_OASIS3_non_parametric.sh        | To run    |
-| Learn2Synth   | Range | train_OASIS3_non_parametric_vary.sh   | To run    |
-
-#### SynthSeg
-
-| Setting | File | States |
-| :----: | :----: | :----: |
-| SynthSeg  | .sh   | To run |
-
-## Experiemtns on PPMI
-
-### Learn2Synth results
-
-| Setting | Opmitized Sigma | File | States |
-| :----: | :----: | :----: | :----: |
-| Learn2Synth   | Fixed | train_PPMI.sh.sh                  | Cease     |
-| Learn2Synth   | Range | train_PPMI_vary.sh                | Cease     |
-| Learn2Synth   | Fixed | train_PPMI_non_parametric.sh      | To run    |
-| Learn2Synth   | Range | train_PPMI_non_parametric_vary.sh | To run    |
-
-#### SynthSeg
-
-| Setting | File | States |
-| :----: | :----: | :----: |
-| SynthSeg  | .sh   | To run |
 
 # Experiemnts on real dataset with compressed labels
 
@@ -702,3 +634,11 @@ Bias field = ((2 * 2 -> upsampling to 256 * 256) ** (eps_a * a) * ((4 * 4 -> ups
 | Setting | File | States |
 | :----: | :----: | :----: |
 | SynthSeg  | train_synthseg_ADHD.sh    | Running   |
+
+| Method | ABIDE | OASIS3
+| :----: | :----: | :----: |
+| SynthSeg (with default parameters)                        | 0.866 | 0.829 |
+| Learn2Synth (parametric setting fixed sigma)              | 0.878 | 0.860 |
+| Learn2Synth (parametric setting varying sigma)            | 0.881 | 0.857 |
+| Learn2Synth (non-parametric setting with fixed sigma)     | 0.879 | 0.875 |
+| Learn2Synth (non-parametric setting with varying sigma)   | 0.874 | 0.881 |
