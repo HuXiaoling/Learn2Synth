@@ -1,2 +1,2 @@
-# learn2synth
-A training strategy for residual synthetizers
+# Learn2Synth
+*Learn2Synth*: Learning Optimal Data Synthesis Using Hypergradients
