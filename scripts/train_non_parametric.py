@@ -276,7 +276,7 @@ class SharedSynth(torch.nn.Module):
 
 
 class DiffSynth(torch.nn.Module):
-    """Apply different geometric transform for synth and real"""
+    """Apply different geometric transforms for synth and real, preserving intra-domain alignment"""
 
     def __init__(self, synth):
         super().__init__()
@@ -286,12 +286,19 @@ class DiffSynth(torch.nn.Module):
         # slab: labels of the source (synth) domain
         # img: image of the target (real) domain
         # lab: label of the target (real) domain
-        final = self.synth.make_final(slab, 1)
-        final.deform = final.deform.make_final(slab)
-        simg, slab = final(slab)
-        rimg, rlab = final.deform(img, lab)
-        rimg = final.intensity(img)
-        rlab = final.postproc(rlab)
+
+        # Synthetic: sample transform specific to slab
+        final_synth = self.synth.make_final(slab, 1)
+        final_synth.deform = final_synth.deform.make_final(slab)
+        simg, slab = final_synth(slab)
+
+        # Real: sample a separate transform specific to img/lab (but shared between them)
+        final_real = self.synth.make_final(img, 1)
+        final_real.deform = final_real.deform.make_final(img)
+        rimg, rlab = final_real.deform([img, lab])  # ensure same deformation applied
+        rimg = final_real.intensity(rimg)
+        rlab = final_real.postproc(rlab)
+
         return simg, slab, rimg, rlab
 
 
