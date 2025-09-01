@@ -95,36 +95,81 @@ class LearnableSynthSeg(nn.Module):
 
     def train_step(self, synth_image, synth_ref, real_image, real_ref):
         optim_seg, optim_synth = self.optimizers()
-
+    
         optim_seg.zero_grad()
         optim_synth.zero_grad()
-
-        # synth forward
-        # we must call clone_module so that a copy of all the weights
-        # is performed before the in-place update.
-        # Otherwise, we could not backpropagate through the weights
-        # after the update.
+    
+        # ================================================================
+        # 1. SYNTHETIC PASS (updates segmentation network parameters φ)
+        # ================================================================
+        # We call clone_module(self.segnet) instead of using self.segnet directly.
+        # Why? Because we are about to update φ in-place via optim_seg.step().
+        # If we forward with self.segnet directly, the in-place parameter update
+        # would break the computation graph, and we could not backpropagate through
+        # the update step when computing hypergradients in the real pass.
+        #
+        # clone_module works as follows:
+        # - It creates a shallow copy of the module structure.
+        # - Each parameter is replaced with param.clone(), which is NOT a leaf
+        #   variable but still has autograd dependency on the original parameter.
+        #   Thus gradients flow back to the original φ.
+        #
+        # Effectively, clone_module gives us a "clean copy" to do forward passes,
+        # while gradients still accumulate on the real self.segnet parameters.
         self.train()
         synth_pred = clone_module(self.segnet)(synth_image)
+    
+        # Synthetic loss: L_synth = ℓ(f_φ(A_θ(x_synth)), y_synth)
         synth_loss = self.loss(synth_pred, synth_ref)
+    
+        # Backward w/ create_graph=True:
+        # This ensures that the parameter update step (optim_seg.step)
+        # is itself recorded in the computation graph.
+        # Without create_graph, φ* would just be a detached tensor,
+        # and we could not differentiate through the update wrt θ later.
         if self.backward:
             self.backward(synth_loss, inputs=list(optim_seg.parameters()), create_graph=True)
         else:
             synth_loss.backward(inputs=list(optim_seg.parameters()), create_graph=True)
+    
+        # Perform the parameter update:
+        # φ* = φ − η ∇_φ L_synth(A_θ(x_synth), y_synth)
+        # Importantly, because of create_graph=True, φ* "remembers"
+        # its dependence on θ through A_θ. This establishes the link
+        # between θ and any future real loss that uses φ*.
         optim_seg.step()
-
-        # real forward
-        # no need to clone here
-        # eval mode because we do not want to accumulate norm stats
+    
+        # ================================================================
+        # 2. REAL PASS (updates augmentation network parameters θ)
+        # ================================================================
+        # Now we evaluate the segmentation network on real data.
+        # Note: φ* (the updated parameters) are implicitly used here,
+        # so the real loss depends on θ indirectly via φ*.
+        # No need to clone this time, since we do not want to create
+        # a new graph or disturb normalization statistics.
         self.eval()
         real_pred = self.segnet(real_image)
+    
+        # Real loss: L_real = ℓ(f_{φ*}(x_real), y_real)
         real_loss = self.loss(real_pred, real_ref)
+    
+        # Backward on real_loss wrt θ:
+        # Even though x_real never passes through A_θ,
+        # the chain rule applies:
+        #   ∂L_real/∂θ = (∂L_real/∂φ*) · (∂φ*/∂θ)
+        # This is possible because φ* was computed in the synthetic pass
+        # with create_graph=True, so autograd knows how φ* depends on θ.
+        #
+        # In other words: φ* "carries the imprint" of θ,
+        # and L_real leverages that to compute a hypergradient.
         if self.backward:
             self.backward(real_loss.mul(self.alpha), inputs=list(optim_synth.parameters()))
         else:
             real_loss.mul(self.alpha).backward(inputs=list(optim_synth.parameters()))
+    
+        # Update augmentation parameters θ
         optim_synth.step()
-
+    
         return synth_loss, real_loss
 
     def eval_step(self, synth_image_plus, synth_image, synth_ref, real_image, real_ref):
