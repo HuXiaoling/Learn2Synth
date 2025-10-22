@@ -1,5 +1,4 @@
-# Learn2Synth
-*Learn2Synth*: Learning Optimal Data Synthesis using Hypergradients for Brain Image Segmentation
+# *Learn2Synth*: Learning Optimal Data Synthesis using Hypergradients for Brain Image Segmentation
 
 ### Script to run the experiments:
 
