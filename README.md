@@ -1,6 +1,12 @@
 # Learn2Synth
 *Learn2Synth*: Learning Optimal Data Synthesis using Hypergradients for Brain Image Segmentation
 
+### Framework
+
+<p align="center">
+  <img src="./figure_pipeline/flows.png" alt="drawing", width="850"/>
+</p>
+
 ### Script to run the experiments:
 
 ```
