@@ -1,5 +1,5 @@
 # Learn2Synth
-*Learn2Synth*: Learning Optimal Data Synthesis using Hypergradients for Brain Image Segmentation
+[*Learn2Synth*: Learning Optimal Data Synthesis using Hypergradients for Brain Image Segmentation](https://arxiv.org/pdf/2411.16719)
 
 ### Framework
 
